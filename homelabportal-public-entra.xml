@@ -370,12 +370,16 @@
   <Config Name="qBittorrent URL" Target="QBITTORRENT_URL" Default="http://YOUR_BACKEND_HOST:8585" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Enable Radarr" Target="ENABLE_RADARR" Default="false" Mode="" Description="Radarr - Movie Automation" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Radarr URL" Target="RADARR_URL" Default="http://YOUR_BACKEND_HOST:7878" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Radarr Landing" Target="RADARR_LANDING" Default="radarr" Mode="" Description="Landing page when clicking Radarr (e.g., radarr, radarr/calendar)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Enable Sonarr" Target="ENABLE_SONARR" Default="false" Mode="" Description="Sonarr - TV Show Automation" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Sonarr URL" Target="SONARR_URL" Default="http://YOUR_BACKEND_HOST:8989" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Sonarr Landing" Target="SONARR_LANDING" Default="sonarr" Mode="" Description="Landing page when clicking Sonarr (e.g., sonarr, sonarr/calendar)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Enable Lidarr" Target="ENABLE_LIDARR" Default="false" Mode="" Description="Lidarr - Music Automation" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Lidarr URL" Target="LIDARR_URL" Default="http://YOUR_BACKEND_HOST:8686" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Lidarr Landing" Target="LIDARR_LANDING" Default="lidarr" Mode="" Description="Landing page when clicking Lidarr (e.g., lidarr, lidarr/albums)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Enable Whisparr" Target="ENABLE_WHISPARR" Default="false" Mode="" Description="Whisparr - Adult Content" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Whisparr URL" Target="WHISPARR_URL" Default="http://YOUR_BACKEND_HOST:6969" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Whisparr Landing" Target="WHISPARR_LANDING" Default="whisparr" Mode="" Description="Landing page when clicking Whisparr (e.g., whisparr, whisparr/performers)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Enable Prowlarr" Target="ENABLE_PROWLARR" Default="false" Mode="" Description="Prowlarr - Indexer Manager" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Prowlarr URL" Target="PROWLARR_URL" Default="http://YOUR_BACKEND_HOST:9696" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Enable Seerr" Target="ENABLE_SEERR" Default="false" Mode="" Description="Seerr - Request Manager" Type="Variable" Display="always" Required="false" Mask="false"/>
@@ -415,4 +419,6 @@
   <Config Name="Certificates Volume" Target="/etc/letsencrypt" Default="/mnt/user/appdata/homelabportal-public-entra/letsencrypt" Mode="rw" Description="SSL Certificates" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/homelabportal-public-entra/letsencrypt</Config>
   <Config Name="Logs Volume" Target="/var/log/apache2" Default="/mnt/user/appdata/homelabportal-public-entra/logs" Mode="rw" Description="Apache Logs" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/homelabportal-public-entra/logs</Config>
 </Container>
+
+
 

@@ -153,12 +153,20 @@
       <Value>http://YOUR_BACKEND_HOST:7878</Value>
     </Variable>
     <Variable>
+      <Name>RADARR_LANDING</Name>
+      <Value>radarr</Value>
+    </Variable>
+    <Variable>
       <Name>ENABLE_SONARR</Name>
       <Value>false</Value>
     </Variable>
     <Variable>
       <Name>SONARR_URL</Name>
       <Value>http://YOUR_BACKEND_HOST:8989</Value>
+    </Variable>
+    <Variable>
+      <Name>SONARR_LANDING</Name>
+      <Value>sonarr</Value>
     </Variable>
     <Variable>
       <Name>ENABLE_LIDARR</Name>
@@ -169,12 +177,20 @@
       <Value>http://YOUR_BACKEND_HOST:8686</Value>
     </Variable>
     <Variable>
+      <Name>LIDARR_LANDING</Name>
+      <Value>lidarr</Value>
+    </Variable>
+    <Variable>
       <Name>ENABLE_WHISPARR</Name>
       <Value>false</Value>
     </Variable>
     <Variable>
       <Name>WHISPARR_URL</Name>
       <Value>http://YOUR_BACKEND_HOST:6969</Value>
+    </Variable>
+    <Variable>
+      <Name>WHISPARR_LANDING</Name>
+      <Value>whisparr</Value>
     </Variable>
     <!-- SEARCH Services -->
     <Variable>
@@ -339,12 +355,16 @@
   <!-- CONTENT Services -->
   <Config Name="Enable Radarr" Target="ENABLE_RADARR" Default="false" Mode="" Description="Radarr - Movie Automation" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Radarr URL" Target="RADARR_URL" Default="http://YOUR_BACKEND_HOST:7878" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Radarr Landing" Target="RADARR_LANDING" Default="radarr" Mode="" Description="Landing page when clicking Radarr (e.g., radarr, radarr/calendar)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Enable Sonarr" Target="ENABLE_SONARR" Default="false" Mode="" Description="Sonarr - TV Show Automation" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Sonarr URL" Target="SONARR_URL" Default="http://YOUR_BACKEND_HOST:8989" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Sonarr Landing" Target="SONARR_LANDING" Default="sonarr" Mode="" Description="Landing page when clicking Sonarr (e.g., sonarr, sonarr/calendar)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Enable Lidarr" Target="ENABLE_LIDARR" Default="false" Mode="" Description="Lidarr - Music Automation" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Lidarr URL" Target="LIDARR_URL" Default="http://YOUR_BACKEND_HOST:8686" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Lidarr Landing" Target="LIDARR_LANDING" Default="lidarr" Mode="" Description="Landing page when clicking Lidarr (e.g., lidarr, lidarr/albums)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Enable Whisparr" Target="ENABLE_WHISPARR" Default="false" Mode="" Description="Whisparr - Adult Content" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Whisparr URL" Target="WHISPARR_URL" Default="http://YOUR_BACKEND_HOST:6969" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Whisparr Landing" Target="WHISPARR_LANDING" Default="whisparr" Mode="" Description="Landing page when clicking Whisparr (e.g., whisparr, whisparr/performers)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
 
   <!-- SEARCH Services -->
   <Config Name="Enable Prowlarr" Target="ENABLE_PROWLARR" Default="false" Mode="" Description="Prowlarr - Indexer Manager" Type="Variable" Display="always" Required="false" Mask="false"/>

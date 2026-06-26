@@ -25,7 +25,7 @@ Choose the template that matches your deployment scenario:
 **Features:**
 - HTTP only (no SSL needed)
 - Basic authentication (username/password)
-- Internal IP address access (e.g., `http://192.168.9.244`)
+- Internal IP address access (e.g., `http://192.168.x.x`)
 - No certificate management
 - Minimal resource usage
 
@@ -132,7 +132,7 @@ Choose the template that matches your deployment scenario:
 3. Click `Select a template`
 4. Paste the template content or load from file
 5. Configure:
-   - `IP`: Your container IP (e.g., `192.168.9.244`)
+   - `IP`: Your container IP (e.g., `192.168.x.x`)
    - `BASIC_AUTH_CREDENTIALS`: `user:password`
    - Enable the services you want to use
    - Set backend service URLs (default values provided)

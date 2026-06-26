@@ -273,6 +273,75 @@
       <Name>TAUTULLI_URL</Name>
       <Value>http://YOUR_BACKEND_HOST:8181</Value>
     </Variable>
+    <!-- Service Icon URLs (for advanced view) -->
+    <Variable>
+      <Name>ICON_URL_SONARR</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_RADARR</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_WHISPARR</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_LIDARR</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_PROWLARR</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_SEERR</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_BAZARR</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_SABNZBD</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_NZBGET</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_NZBHYDRA</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_TRANSMISSION</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_QBITTORRENT</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_DELUGE</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_JELLYFIN</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_EMBY</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_PLEX</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ICON_URL_TAUTULLI</Name>
+      <Value></Value>
+    </Variable>
   </Environment>
 
   <Labels/>
@@ -323,6 +392,26 @@
   <Config Name="Jellyfin URL" Target="JELLYFIN_URL" Default="http://YOUR_BACKEND_HOST:8096" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Enable Tautulli" Target="ENABLE_TAUTULLI" Default="false" Mode="" Description="Tautulli - Analytics" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Tautulli URL" Target="TAUTULLI_URL" Default="http://YOUR_BACKEND_HOST:8181" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <!-- Service Icon URLs (Advanced View) -->
+  <Config Name="Sonarr Icon URL" Target="ICON_URL_SONARR" Default="" Mode="" Description="Custom icon URL for Sonarr (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Radarr Icon URL" Target="ICON_URL_RADARR" Default="" Mode="" Description="Custom icon URL for Radarr (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Whisparr Icon URL" Target="ICON_URL_WHISPARR" Default="" Mode="" Description="Custom icon URL for Whisparr (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Lidarr Icon URL" Target="ICON_URL_LIDARR" Default="" Mode="" Description="Custom icon URL for Lidarr (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Prowlarr Icon URL" Target="ICON_URL_PROWLARR" Default="" Mode="" Description="Custom icon URL for Prowlarr (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Seerr Icon URL" Target="ICON_URL_SEERR" Default="" Mode="" Description="Custom icon URL for Seerr (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Bazarr Icon URL" Target="ICON_URL_BAZARR" Default="" Mode="" Description="Custom icon URL for Bazarr (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="SABnzbd Icon URL" Target="ICON_URL_SABNZBD" Default="" Mode="" Description="Custom icon URL for SABnzbd (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="NZBGet Icon URL" Target="ICON_URL_NZBGET" Default="" Mode="" Description="Custom icon URL for NZBGet (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="NZBHydra Icon URL" Target="ICON_URL_NZBHYDRA" Default="" Mode="" Description="Custom icon URL for NZBHydra (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Transmission Icon URL" Target="ICON_URL_TRANSMISSION" Default="" Mode="" Description="Custom icon URL for Transmission (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="qBittorrent Icon URL" Target="ICON_URL_QBITTORRENT" Default="" Mode="" Description="Custom icon URL for qBittorrent (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Deluge Icon URL" Target="ICON_URL_DELUGE" Default="" Mode="" Description="Custom icon URL for Deluge (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Jellyfin Icon URL" Target="ICON_URL_JELLYFIN" Default="" Mode="" Description="Custom icon URL for Jellyfin (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Emby Icon URL" Target="ICON_URL_EMBY" Default="" Mode="" Description="Custom icon URL for Emby (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Plex Icon URL" Target="ICON_URL_PLEX" Default="" Mode="" Description="Custom icon URL for Plex (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Tautulli Icon URL" Target="ICON_URL_TAUTULLI" Default="" Mode="" Description="Custom icon URL for Tautulli (advanced view)" Type="Variable" Display="always" Required="false" Mask="false"/>
+
   <Config Name="Certificates Volume" Target="/etc/letsencrypt" Default="/mnt/user/appdata/homelabportal-public-entra/letsencrypt" Mode="rw" Description="SSL Certificates" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/homelabportal-public-entra/letsencrypt</Config>
   <Config Name="Logs Volume" Target="/var/log/apache2" Default="/mnt/user/appdata/homelabportal-public-entra/logs" Mode="rw" Description="Apache Logs" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/homelabportal-public-entra/logs</Config>
 </Container>

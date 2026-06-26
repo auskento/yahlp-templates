@@ -156,11 +156,22 @@ Choose the template that matches your deployment scenario:
 
 ## Service Configuration
 
-All templates come with pre-configured service URLs using common defaults:
-- `192.168.9.13` as the backend host (adjust to your network)
-- Standard ports for each service
+All templates come with service URL placeholders that you must configure:
+- `YOUR_BACKEND_HOST` - Replace with your backend service host (e.g., `192.168.9.13` or internal hostname)
+- Standard ports for each service are pre-configured
+- Update all service URLs to match your network setup
 
-You can modify these values in the template configuration to match your setup.
+**Example configuration:**
+If your services are running on `192.168.9.13`:
+- `SABnzbd URL`: `http://192.168.9.13:8080/sabnzbd`
+- `NZBGet URL`: `http://192.168.9.13:6789/nzbget`
+- `Radarr URL`: `http://192.168.9.13:7878`
+- etc.
+
+Or use hostnames if you have DNS configured:
+- `SABnzbd URL`: `http://sabnzbd.local:8080/sabnzbd`
+- `NZBGet URL`: `http://nzbget.local:6789/nzbget`
+- etc.
 
 ### Supported Services (17 total):
 

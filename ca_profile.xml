@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <!-- Profile describing YAHLP Templates -->
+  <Profile>
+# YAHLP - Yet Another HomeLab Portal Templates
+
+Unraid container templates for YAHLP (Yet Another HomeLab Portal), a comprehensive reverse proxy and unified media server dashboard.
+
+## Features
+
+- **4 Deployment Modes:** Private (Basic Auth), Public (Basic Auth), Public (Google OAuth), Public (Entra ID)
+- **17 Integrated Services:** Supports Radarr, Sonarr, Lidarr, Whisparr, Jellyfin, Plex, Emby, Tautulli, and more
+- **Multiple Dashboard Styles:** Classic, Modern, Sleek, and Minimal layouts
+- **Theme Support:** Dark and light theme toggle with persistent user preferences
+- **Torrent/Usenet Links:** Pre-configured sites with favicon caching
+- **Mobile Responsive:** Dedicated mobile-optimized layout
+- **Authentication Options:** None, Basic Auth, Google OAuth2, or Microsoft Entra ID
+- **Automatic HTTPS:** Let's Encrypt integration for public deployments
+- **Minimal Defaults:** All services disabled by default - users enable only what they need
+
+## Templates Included
+
+- **yahlp-private-basic.xml** - HTTP-only private mode with basic authentication
+- **yahlp-public-basic.xml** - HTTPS public mode with basic authentication
+- **yahlp-public-google.xml** - HTTPS public mode with Google OAuth2
+- **yahlp-public-entra.xml** - HTTPS public mode with Microsoft Entra ID OAuth2
+
+## Documentation
+
+Full setup and configuration documentation is available in the main repository. Each template includes detailed comments and sensible defaults for most use cases.
+
+## Support
+
+For issues, feature requests, or questions, visit the main YAHLP repository on GitHub.
+  </Profile>
+  <!-- Icon URL -->
+  <Icon>https://raw.githubusercontent.com/auskento/yahlp/main/yahlp-150.png</Icon>
+  <!-- GitHub Repository Link -->
+  <WebPage>https://github.com/auskento/yahlp-templates</WebPage>
+  <!-- Main Repository -->
+  <Forum>https://github.com/auskento/yahlp</Forum>
+</CommunityApplications>

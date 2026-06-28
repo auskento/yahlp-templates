@@ -99,12 +99,24 @@
       <Value>dark</Value>
     </Variable>
     <Variable>
-      <Name>AUTHTYPE</Name>
-      <Value>basic</Value>
+      <Name>SITES_ENABLED</Name>
+      <Value></Value>
     </Variable>
     <Variable>
-      <Name>BASIC_AUTH_CREDENTIALS</Name>
-      <Value>user:password</Value>
+      <Name>AUTHTYPE</Name>
+      <Value>google</Value>
+    </Variable>
+    <Variable>
+      <Name>GOOGLE_CLIENT_ID</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>GOOGLE_CLIENT_SECRET</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>GOOGLE_REDIRECT_URI</Name>
+      <Value>https://yourdomain.com</Value>
     </Variable>
     <Variable>
       <Name>ENABLE_SABNZBD</Name>

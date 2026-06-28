@@ -99,6 +99,10 @@
       <Value>dark</Value>
     </Variable>
     <Variable>
+      <Name>SITES_ENABLED</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
       <Name>AUTHTYPE</Name>
       <Value>entra</Value>
     </Variable>

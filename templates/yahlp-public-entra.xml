@@ -405,10 +405,10 @@
 
   <!-- AUTHENTICATION -->
   <Config Name="Authentication Type" Target="AUTHTYPE" Default="entra" Mode="" Description="Choose: none, basic, google, entra" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Entra Client ID" Target="ENTRA_CLIENT_ID" Default="" Mode="" Description="Azure AD Application ID" Type="Variable" Display="always" Required="false" Mask="true"/>
-  <Config Name="Entra Client Secret" Target="ENTRA_CLIENT_SECRET" Default="" Mode="" Description="Azure AD Application Secret" Type="Variable" Display="always" Required="false" Mask="true"/>
-  <Config Name="Entra Redirect URI" Target="ENTRA_REDIRECT_URI" Default="https://yourdomain.com/auth/oauth2/callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Entra Metadata URL" Target="ENTRA_PROVIDER_METADATA_URL" Default="https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration" Mode="" Description="OpenID configuration URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Entra Client ID" Target="ENTRA_CLIENT_ID" Default="" Mode="" Description="Azure AD Application ID" Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Entra Client Secret" Target="ENTRA_CLIENT_SECRET" Default="" Mode="" Description="Azure AD Application Secret" Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Entra Redirect URI" Target="ENTRA_REDIRECT_URI" Default="https://yourdomain.com/auth/oauth2/callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Entra Metadata URL" Target="ENTRA_PROVIDER_METADATA_URL" Default="https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration" Mode="" Description="OpenID configuration URL" Type="Variable" Display="always" Required="true" Mask="false"/>
   <Config Name="Entra Crypto Passphrase" Target="ENTRA_CRYPTO_PASSPHRASE" Default="" Mode="" Description="Session encryption passphrase (REQUIRED)" Type="Variable" Display="always" Required="true" Mask="true"/>
 
   <!-- USENET SERVICES -->

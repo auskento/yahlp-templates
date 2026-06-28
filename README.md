@@ -1,10 +1,10 @@
-# HomELabPortal - Unraid Templates
+# YAHLP - Yet Another HomeLab Portal - Unraid Templates
 
-Specialized Unraid container templates for **HomELabPortal** deployment with pre-configured environment variables for different deployment modes and authentication methods.
+Specialized Unraid container templates for **YAHLP** deployment with pre-configured environment variables for different deployment modes and authentication methods.
 
 ## Overview
 
-HomELabPortal is a comprehensive reverse proxy and unified media server dashboard that supports:
+YAHLP (Yet Another HomeLab Portal) is a comprehensive reverse proxy and unified media server dashboard that supports:
 - **17 services** (Radarr, Sonarr, Plex, Emby, Jellyfin, and more)
 - **4 dashboard styles** (Classic, Modern, Sleek, Minimal)
 - **Dark/Light theme toggle** with persistent preference
@@ -18,7 +18,7 @@ HomELabPortal is a comprehensive reverse proxy and unified media server dashboar
 Choose the template that matches your deployment scenario:
 
 ### 1. **Private Mode with Basic Auth**
-**File:** `homelabportal-private-basic.xml`
+**File:** `yahlp-private-basic.xml`
 
 **Best for:** Internal-only deployments on a trusted local network
 
@@ -38,7 +38,7 @@ Choose the template that matches your deployment scenario:
 ---
 
 ### 2. **Public Mode with Basic Auth**
-**File:** `homelabportal-public-basic.xml`
+**File:** `yahlp-public-basic.xml`
 
 **Best for:** External access with username/password protection
 
@@ -60,7 +60,7 @@ Choose the template that matches your deployment scenario:
 ---
 
 ### 3. **Public Mode with Google OAuth**
-**File:** `homelabportal-public-google.xml`
+**File:** `yahlp-public-google.xml`
 
 **Best for:** External access protected by Google account authentication
 
@@ -90,7 +90,7 @@ Choose the template that matches your deployment scenario:
 ---
 
 ### 4. **Public Mode with Entra ID (Microsoft) OAuth**
-**File:** `homelabportal-public-entra.xml`
+**File:** `yahlp-public-entra.xml`
 
 **Best for:** External access protected by Microsoft/Azure AD authentication
 
@@ -217,7 +217,7 @@ These services will then be accessible via their subdomains with the same authen
 All templates support:
 - **STYLE**: Dashboard appearance (classic, modern, sleek, minimal)
 - **DASHBOARD_NAME**: Custom title for your dashboard
-- **DASHBOARD_ICON**: Path to custom icon (default: `/icons/homelabportal.png`)
+- **DASHBOARD_ICON**: Path to custom icon (default: `/icons/yahlp.png`)
 - **DASHBOARD_LANDING**: Default page when accessing dashboard (e.g., `radarr`, `sonarr`)
 - **DASHBOARD_THEME**: Dark (default) or light
 - **DASHBOARD_ORDER**: Service category display order
@@ -286,11 +286,11 @@ Templates are stored in this repository. To get the latest:
 ## Support
 
 For issues, feature requests, or questions, visit the main repository:
-- **GitHub**: https://github.com/auskento/HomELabPortal
-- **Documentation**: https://github.com/auskento/HomELabPortal
+- **GitHub**: https://github.com/auskento/yahlp
+- **Documentation**: https://github.com/auskento/yahlp
 
 ---
 
 ## License
 
-These templates are part of the HomELabPortal project and follow the same license.
+These templates are part of the YAHLP (Yet Another HomeLab Portal) project and follow the same license.

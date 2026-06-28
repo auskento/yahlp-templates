@@ -459,7 +459,7 @@
   <Config Name="Dashboard Theme" Target="DASHBOARD_THEME" Default="dark" Mode="" Description="Choose: dark or light" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Name" Target="DASHBOARD_NAME" Default="YAHLP" Mode="" Description="Title displayed in dashboard" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Icon" Target="DASHBOARD_ICON" Default="/icons/yahlp.png" Mode="" Description="Path to dashboard icon" Type="Variable" Display="advanced" Required="false" Mask="false"/>
-  <Config Name="Dashboard Landing Page" Target="DASHBOARD_LANDING" Default="" Mode="" Description="Default page when accessing dashboard (e.g., radarr, sonarr)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Dashboard Landing Page" Target="DASHBOARD_LANDING" Default="" Mode="" Description="Default page to load when accessing dashboard. Examples: radarr, sonarr, sonarr/calendar, radarr/upcoming. Leave blank to show welcome screen." Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Category Order" Target="DASHBOARD_ORDER" Default="CONTENT,SEARCH,USENET,TORRENTS,MEDIA" Mode="" Description="Comma-separated category display order" Type="Variable" Display="advanced" Required="false" Mask="false"/>
 
   <!-- Sites Configuration -->

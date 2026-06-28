@@ -259,6 +259,10 @@
       <Value></Value>
     </Variable>
     <Variable>
+      <Name>EMBY_REDIRECT_URI</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
       <Name>ENABLE_PLEX</Name>
       <Value>false</Value>
     </Variable>
@@ -268,6 +272,10 @@
     </Variable>
     <Variable>
       <Name>PLEX_DOMAIN</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>PLEX_REDIRECT_URI</Name>
       <Value></Value>
     </Variable>
     <Variable>
@@ -409,9 +417,11 @@
   <Config Name="Enable Emby" Target="ENABLE_EMBY" Default="false" Mode="" Description="Emby - Media Streaming" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Emby URL" Target="EMBY_URL" Default="http://emby:8096" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Emby Domain" Target="EMBY_DOMAIN" Default="" Mode="" Description="Optional subdomain (e.g., emby.yourdomain.com)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Emby Redirect URI" Target="EMBY_REDIRECT_URI" Default="" Mode="" Description="Google redirect URI (e.g., https://emby.yourdomain.com/oauth2callback)" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Enable Plex" Target="ENABLE_PLEX" Default="false" Mode="" Description="Plex - Media Streaming" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Plex URL" Target="PLEX_URL" Default="http://plex:32400" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Plex Domain" Target="PLEX_DOMAIN" Default="" Mode="" Description="Optional subdomain (e.g., plex.yourdomain.com)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Plex Redirect URI" Target="PLEX_REDIRECT_URI" Default="" Mode="" Description="Google redirect URI (e.g., https://plex.yourdomain.com/oauth2callback)" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Enable Jellyfin" Target="ENABLE_JELLYFIN" Default="false" Mode="" Description="Jellyfin - Media Streaming" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Jellyfin URL" Target="JELLYFIN_URL" Default="http://jellyfin:8096" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Enable Tautulli" Target="ENABLE_TAUTULLI" Default="false" Mode="" Description="Tautulli - Analytics" Type="Variable" Display="always" Required="false" Mask="false"/>

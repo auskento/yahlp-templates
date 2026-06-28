@@ -54,13 +54,11 @@
       <Name>TZ</Name>
       <Value></Value>
     </Variable>
+
+    <!-- DASHBOARD SETTINGS -->
     <Variable>
       <Name>DASH_STYLE</Name>
       <Value>modern</Value>
-    </Variable>
-    <Variable>
-      <Name>DASHBOARD_THEME</Name>
-      <Value>dark</Value>
     </Variable>
     <Variable>
       <Name>DASHBOARD_NAME</Name>
@@ -69,6 +67,10 @@
     <Variable>
       <Name>DASHBOARD_ICON</Name>
       <Value>/icons/yahlp.png</Value>
+    </Variable>
+    <Variable>
+      <Name>DASHBOARD_THEME</Name>
+      <Value>dark</Value>
     </Variable>
     <Variable>
       <Name>DASHBOARD_LANDING</Name>
@@ -82,6 +84,32 @@
     <!-- SITES CONFIGURATION -->
     <Variable>
       <Name>SITES_ENABLED</Name>
+      <Value></Value>
+    </Variable>
+
+    <!-- AUTHENTICATION -->
+    <Variable>
+      <Name>AUTHTYPE</Name>
+      <Value>entra</Value>
+    </Variable>
+    <Variable>
+      <Name>ENTRA_CLIENT_ID</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ENTRA_CLIENT_SECRET</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ENTRA_REDIRECT_URI</Name>
+      <Value>https://yourdomain.com/auth/oauth2/callback</Value>
+    </Variable>
+    <Variable>
+      <Name>ENTRA_PROVIDER_METADATA_URL</Name>
+      <Value>https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration</Value>
+    </Variable>
+    <Variable>
+      <Name>ENTRA_CRYPTO_PASSPHRASE</Name>
       <Value></Value>
     </Variable>
 
@@ -350,32 +378,6 @@
       <Name>ICON_URL_TAUTULLI</Name>
       <Value></Value>
     </Variable>
-
-    <!-- AUTHENTICATION -->
-    <Variable>
-      <Name>AUTHTYPE</Name>
-      <Value>entra</Value>
-    </Variable>
-    <Variable>
-      <Name>ENTRA_CLIENT_ID</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>ENTRA_CLIENT_SECRET</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>ENTRA_REDIRECT_URI</Name>
-      <Value>https://yourdomain.com/auth/oauth2/callback</Value>
-    </Variable>
-    <Variable>
-      <Name>ENTRA_PROVIDER_METADATA_URL</Name>
-      <Value>https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration</Value>
-    </Variable>
-    <Variable>
-      <Name>ENTRA_CRYPTO_PASSPHRASE</Name>
-      <Value></Value>
-    </Variable>
   </Environment>
   <Volumes>
     <Volume>
@@ -400,6 +402,14 @@
   <Config Name="Dashboard Landing Page" Target="DASHBOARD_LANDING" Default="" Mode="" Description="Default page to load when accessing dashboard. Examples: radarr, sonarr, sonarr/calendar, radarr/upcoming. Leave blank to show welcome screen." Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Category Order" Target="DASHBOARD_ORDER" Default="CONTENT,SEARCH,USENET,TORRENTS,MEDIA" Mode="" Description="Comma-separated category display order" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Enabled Torrent/Usenet Sites" Target="SITES_ENABLED" Default="" Mode="" Description="Comma-separated 3-letter codes. Torrent: TPB=Pirate Bay, FIL=FileList, HDB=HDBits, IPT=IP Torrents, 1337=1337x, YTS=YTS, LAT=LimeTorrents, NYA=Nyaa, PTP=PassThePopcorn. Usenet: DOG=DOGnzb, DRS=DrunkenSlug, NLF=nzb.life, NFW=NZBFinder, NGK=NZBgeek, PLA=nzbplanet, TAB=Tabula Rasa. Example: TPB,DOG,LAT,DRS" Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <!-- AUTHENTICATION -->
+  <Config Name="Authentication Type" Target="AUTHTYPE" Default="entra" Mode="" Description="Choose: none, basic, google, entra" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Entra Client ID" Target="ENTRA_CLIENT_ID" Default="" Mode="" Description="Azure AD Application ID" Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Entra Client Secret" Target="ENTRA_CLIENT_SECRET" Default="" Mode="" Description="Azure AD Application Secret" Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Entra Redirect URI" Target="ENTRA_REDIRECT_URI" Default="https://yourdomain.com/auth/oauth2/callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Entra Metadata URL" Target="ENTRA_PROVIDER_METADATA_URL" Default="https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration" Mode="" Description="OpenID configuration URL" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Entra Crypto Passphrase" Target="ENTRA_CRYPTO_PASSPHRASE" Default="" Mode="" Description="Session encryption passphrase (REQUIRED)" Type="Variable" Display="always" Required="true" Mask="true"/>
 
   <!-- USENET SERVICES -->
   <Config Name="Enable SABnzbd" Target="ENABLE_SABNZBD" Default="false" Mode="" Description="SABnzbd - Usenet Client" Type="Variable" Display="always" Required="false" Mask="false"/>
@@ -483,12 +493,4 @@
   <Config Name="Enable Tautulli" Target="ENABLE_TAUTULLI" Default="false" Mode="" Description="Tautulli - Plex Analytics" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Tautulli URL" Target="TAUTULLI_URL" Default="http://tautulli:8181" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Tautulli Icon" Target="ICON_URL_TAUTULLI" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- AUTHENTICATION -->
-  <Config Name="Authentication Type" Target="AUTHTYPE" Default="entra" Mode="" Description="Choose: none, basic, google, entra" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Entra Client ID" Target="ENTRA_CLIENT_ID" Default="" Mode="" Description="Azure AD Application ID" Type="Variable" Display="always" Required="false" Mask="true"/>
-  <Config Name="Entra Client Secret" Target="ENTRA_CLIENT_SECRET" Default="" Mode="" Description="Azure AD Application Secret" Type="Variable" Display="always" Required="false" Mask="true"/>
-  <Config Name="Entra Redirect URI" Target="ENTRA_REDIRECT_URI" Default="https://yourdomain.com/auth/oauth2/callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Entra Metadata URL" Target="ENTRA_PROVIDER_METADATA_URL" Default="https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration" Mode="" Description="OpenID configuration URL" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Entra Crypto Passphrase" Target="ENTRA_CRYPTO_PASSPHRASE" Default="" Mode="" Description="Session encryption passphrase (REQUIRED)" Type="Variable" Display="always" Required="true" Mask="true"/>
 </Container>

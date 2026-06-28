@@ -68,13 +68,11 @@
       <Name>TZ</Name>
       <Value></Value>
     </Variable>
+
+    <!-- DASHBOARD SETTINGS -->
     <Variable>
       <Name>DASH_STYLE</Name>
       <Value>modern</Value>
-    </Variable>
-    <Variable>
-      <Name>DASHBOARD_THEME</Name>
-      <Value>dark</Value>
     </Variable>
     <Variable>
       <Name>DASHBOARD_NAME</Name>
@@ -83,6 +81,10 @@
     <Variable>
       <Name>DASHBOARD_ICON</Name>
       <Value>/icons/yahlp.png</Value>
+    </Variable>
+    <Variable>
+      <Name>DASHBOARD_THEME</Name>
+      <Value>dark</Value>
     </Variable>
     <Variable>
       <Name>DASHBOARD_LANDING</Name>
@@ -97,6 +99,52 @@
     <Variable>
       <Name>SITES_ENABLED</Name>
       <Value></Value>
+    </Variable>
+
+    <!-- AUTHENTICATION -->
+    <Variable>
+      <Name>AUTHTYPE</Name>
+      <Value>none</Value>
+    </Variable>
+    <Variable>
+      <Name>BASIC_AUTH_CREDENTIALS</Name>
+      <Value></Value>
+    </Variable>
+
+    <!-- ENTRA ID (MICROSOFT) AUTHENTICATION -->
+    <Variable>
+      <Name>ENTRA_CLIENT_ID</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ENTRA_CLIENT_SECRET</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>ENTRA_REDIRECT_URI</Name>
+      <Value>https://yourdomain.com/auth/oauth2/callback</Value>
+    </Variable>
+    <Variable>
+      <Name>ENTRA_PROVIDER_METADATA_URL</Name>
+      <Value>https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration</Value>
+    </Variable>
+    <Variable>
+      <Name>ENTRA_CRYPTO_PASSPHRASE</Name>
+      <Value></Value>
+    </Variable>
+
+    <!-- GOOGLE AUTHENTICATION -->
+    <Variable>
+      <Name>GOOGLE_CLIENT_ID</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>GOOGLE_CLIENT_SECRET</Name>
+      <Value></Value>
+    </Variable>
+    <Variable>
+      <Name>GOOGLE_REDIRECT_URI</Name>
+      <Value>https://yourdomain.com</Value>
     </Variable>
 
     <!-- USENET SERVICES -->
@@ -371,52 +419,6 @@
     <Variable>
       <Name>ICON_URL_TAUTULLI</Name>
       <Value></Value>
-    </Variable>
-
-    <!-- AUTHENTICATION -->
-    <Variable>
-      <Name>AUTHTYPE</Name>
-      <Value>none</Value>
-    </Variable>
-    <Variable>
-      <Name>BASIC_AUTH_CREDENTIALS</Name>
-      <Value></Value>
-    </Variable>
-
-    <!-- ENTRA ID (MICROSOFT) AUTHENTICATION -->
-    <Variable>
-      <Name>ENTRA_CLIENT_ID</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>ENTRA_CLIENT_SECRET</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>ENTRA_REDIRECT_URI</Name>
-      <Value>https://yourdomain.com/auth/oauth2/callback</Value>
-    </Variable>
-    <Variable>
-      <Name>ENTRA_PROVIDER_METADATA_URL</Name>
-      <Value>https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration</Value>
-    </Variable>
-    <Variable>
-      <Name>ENTRA_CRYPTO_PASSPHRASE</Name>
-      <Value></Value>
-    </Variable>
-
-    <!-- GOOGLE AUTHENTICATION -->
-    <Variable>
-      <Name>GOOGLE_CLIENT_ID</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>GOOGLE_CLIENT_SECRET</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>GOOGLE_REDIRECT_URI</Name>
-      <Value>https://yourdomain.com</Value>
     </Variable>
 
     <!-- SSL CONFIGURATION (Advanced) -->

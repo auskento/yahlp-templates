@@ -397,7 +397,6 @@
   <!-- DASHBOARD SETTINGS -->
   <Config Name="Dashboard Style" Target="DASH_STYLE" Default="modern" Mode="" Description="Choose: classic, modern, sleek, minimal" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Name" Target="DASHBOARD_NAME" Default="Media Server" Mode="" Description="Title displayed in dashboard" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Dashboard Icon" Target="DASHBOARD_ICON" Default="/icons/yahlp.png" Mode="" Description="Path to dashboard icon or URL (leave blank to use default included icon). If DASHBOARD_ICON_URL is provided, it will be downloaded and cached, otherwise this path is used" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Icon URL" Target="DASHBOARD_ICON_URL" Default="" Mode="" Description="URL to download custom dashboard icon (optional - downloaded and cached like service icons). If provided, overrides DASHBOARD_ICON path" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Theme" Target="DASHBOARD_THEME" Default="dark" Mode="" Description="Choose: dark or light" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Landing Page" Target="DASHBOARD_LANDING" Default="" Mode="" Description="Default page to load when accessing dashboard. Examples: radarr, sonarr, sonarr/calendar, radarr/upcoming. Leave blank to show welcome screen." Type="Variable" Display="always" Required="false" Mask="false"/>

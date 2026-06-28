@@ -1,42 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CommunityApplications>
-  <!-- Profile describing YAHLP Templates -->
+<Maintainer>
   <Profile>
 # YAHLP - Yet Another HomeLab Portal Templates
 
-Unraid container templates for YAHLP (Yet Another HomeLab Portal), a comprehensive reverse proxy and unified media server dashboard.
+Unraid container templates for YAHLP (Yet Another HomeLab Portal), a comprehensive reverse proxy and unified media server dashboard for homelab environments.
 
-## Features
+## What's Included
 
-- **4 Deployment Modes:** Private (Basic Auth), Public (Basic Auth), Public (Google OAuth), Public (Entra ID)
-- **17 Integrated Services:** Supports Radarr, Sonarr, Lidarr, Whisparr, Jellyfin, Plex, Emby, Tautulli, and more
-- **Multiple Dashboard Styles:** Classic, Modern, Sleek, and Minimal layouts
-- **Theme Support:** Dark and light theme toggle with persistent user preferences
-- **Torrent/Usenet Links:** Pre-configured sites with favicon caching
-- **Mobile Responsive:** Dedicated mobile-optimized layout
-- **Authentication Options:** None, Basic Auth, Google OAuth2, or Microsoft Entra ID
-- **Automatic HTTPS:** Let's Encrypt integration for public deployments
-- **Minimal Defaults:** All services disabled by default - users enable only what they need
+This repository contains 4 pre-configured Unraid container templates for different deployment scenarios:
 
-## Templates Included
+- **yahlp-private-basic.xml** - Private mode (HTTP) with HTTP Basic Authentication
+- **yahlp-public-basic.xml** - Public mode (HTTPS) with HTTP Basic Authentication
+- **yahlp-public-google.xml** - Public mode (HTTPS) with Google OAuth2 Authentication
+- **yahlp-public-entra.xml** - Public mode (HTTPS) with Microsoft Entra ID (Azure AD) OAuth2 Authentication
 
-- **yahlp-private-basic.xml** - HTTP-only private mode with basic authentication
-- **yahlp-public-basic.xml** - HTTPS public mode with basic authentication
-- **yahlp-public-google.xml** - HTTPS public mode with Google OAuth2
-- **yahlp-public-entra.xml** - HTTPS public mode with Microsoft Entra ID OAuth2
+## Key Features
+
+- **17 Integrated Services** - Radarr, Sonarr, Lidarr, Whisparr, Prowlarr, Seerr, Bazarr, SABnzbd, NZBGet, NZBHydra, Transmission, qBittorrent, Deluge, Jellyfin, Plex, Emby, Tautulli
+- **4 Dashboard Styles** - Classic, Modern, Sleek, Minimal (with mobile-responsive layout)
+- **Dark/Light Theme Toggle** - Persistent user preferences with theme persistence
+- **Minimal Defaults** - All services disabled by default; users enable only what they need
+- **Torrent/Usenet Links** - 16 pre-configured sites (torrent and usenet) with cached favicons
+- **Multiple Authentication Methods** - None, Basic Auth, Google OAuth2, Microsoft Entra ID
+- **Automatic HTTPS** - Let's Encrypt integration for public deployments
+- **Subdomain Routing** - Support for media service subdomains in public mode
+
+## Getting Started
+
+1. Choose a template based on your deployment mode:
+   - **Private Network?** → Use `yahlp-private-basic.xml`
+   - **Public with Passwords?** → Use `yahlp-public-basic.xml`
+   - **Public with Google Accounts?** → Use `yahlp-public-google.xml`
+   - **Public with Microsoft/Enterprise?** → Use `yahlp-public-entra.xml`
+
+2. In Unraid, go to `Docker` → `Add Container` → `Select a template`
+
+3. Load the template and configure your deployment settings
+
+4. Enable the services you need and configure their backend URLs
 
 ## Documentation
 
-Full setup and configuration documentation is available in the main repository. Each template includes detailed comments and sensible defaults for most use cases.
+- **Main Repository:** https://github.com/auskento/yahlp
+- **Setup Guide:** See the main repository README for comprehensive setup and configuration instructions
+- **Support:** Visit the main repository for issues, feature requests, and questions
 
-## Support
+## License
 
-For issues, feature requests, or questions, visit the main YAHLP repository on GitHub.
+These templates are part of the YAHLP project. See the LICENSE file for details.
   </Profile>
-  <!-- Icon URL -->
   <Icon>https://raw.githubusercontent.com/auskento/yahlp/main/yahlp-150.png</Icon>
-  <!-- GitHub Repository Link -->
   <WebPage>https://github.com/auskento/yahlp-templates</WebPage>
-  <!-- Main Repository -->
-  <Forum>https://github.com/auskento/yahlp</Forum>
-</CommunityApplications>
+  <Forum>https://forums.unraid.net/</Forum>
+</Maintainer>

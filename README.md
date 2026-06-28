@@ -1,6 +1,8 @@
 # YAHLP - Yet Another HomeLab Portal - Unraid Templates
 
-Specialized Unraid container templates for **YAHLP** deployment with pre-configured environment variables for different deployment modes and authentication methods.
+Official Unraid container templates for **YAHLP** (Yet Another HomeLab Portal), a comprehensive reverse proxy and unified media server dashboard.
+
+These templates are part of the [Unraid Community Applications](https://unraid.net/community/apps) ecosystem.
 
 ## Overview
 

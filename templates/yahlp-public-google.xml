@@ -10,7 +10,7 @@
   <Support>https://github.com/auskento/yahlp</Support>
   <Project>https://github.com/auskento/yahlp</Project>
   <Category>Network:Web</Category>
-  <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp/main/yahlp-public-basic.xml</TemplateURL>
+  <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp-public-google.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/auskento/yahlp/main/yahlp-150.png</Icon>
   <PostArgs/>
   <CloudSync>false</CloudSync>

@@ -51,7 +51,7 @@
     </Variable>
     <Variable>
       <Name>TZ</Name>
-      <Value>Australia/Melbourne</Value>
+      <Value></Value>
     </Variable>
     <Variable>
       <Name>STYLE</Name>
@@ -154,7 +154,7 @@
     </Variable>
     <Variable>
       <Name>RADARR_LANDING</Name>
-      <Value>radarr</Value>
+      <Value></Value>
     </Variable>
     <Variable>
       <Name>ENABLE_SONARR</Name>
@@ -166,7 +166,7 @@
     </Variable>
     <Variable>
       <Name>SONARR_LANDING</Name>
-      <Value>sonarr</Value>
+      <Value></Value>
     </Variable>
     <Variable>
       <Name>ENABLE_LIDARR</Name>
@@ -406,4 +406,6 @@
   <!-- VOLUMES -->
   <Config Name="Logs Volume" Target="/var/log/apache2" Default="/mnt/user/appdata/yahlp-private/logs" Mode="rw" Description="Apache Logs" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/yahlp-private/logs</Config>
 </Container>
+
+
 

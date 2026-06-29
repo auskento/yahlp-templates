@@ -34,6 +34,27 @@
       </Port>
     </Publish>
   </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/yahlp-public-entra/letsencrypt</HostDir>
+      <ContainerDir>/etc/letsencrypt</ContainerDir>
+      <Mode>rw</Mode>
+      <Description>SSL Certificates</Description>
+      <Access>rw</Access>
+      <Exclude/>
+      <IsFileShare>false</IsFileShare>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/yahlp-public-entra/logs</HostDir>
+      <ContainerDir>/var/log/apache2</ContainerDir>
+      <Mode>rw</Mode>
+      <Description>Apache Logs</Description>
+      <Access>rw</Access>
+      <Exclude/>
+      <IsFileShare>false</IsFileShare>
+    </Volume>
+  </Data>
+
   <Environment>
     <!-- DEPLOYMENT & DOMAIN SETTINGS -->
     <Variable>

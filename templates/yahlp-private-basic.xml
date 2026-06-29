@@ -404,8 +404,8 @@
     </Variable>
   </Environment>
 
-  <!-- AUTHENTICATION TYPE (LOCKED) -->
-  <Config Name="Authentication Type" Target="AUTHTYPE" Default="basic" Mode="" Description="Basic Auth (locked for this template)" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <!-- AUTHENTICATION -->
+  <Config Name="Authentication Type" Target="AUTHTYPE" Default="basic" Mode="" Description="Basic Auth (can be changed to: none, google, entra)" Type="Variable" Display="advanced" Required="true" Mask="false">basic</Config>
 
   <!-- DASHBOARD SETTINGS -->
   <Config Name="Dashboard Style" Target="DASH_STYLE" Default="modern" Mode="" Description="Choose: classic, modern, sleek, minimal" Type="Variable" Display="always" Required="false" Mask="false"/>
@@ -501,14 +501,11 @@
   <Config Name="Plex Redirect URI" Target="PLEX_REDIRECT_URI" Default="https://plex.yourdomain.com/oauth2callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Plex Icon" Target="ICON_URL_PLEX" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
 
-  <Config Name="Enable Tautulli" Target="ENABLE_TAUTULLI" Default="false" Mode="" Description="Tautulli - Plex Analytics (Settings - Show Advanced - Web Interface - Enable Proxy, Set Public Domain to https://yahlp.yourdomain.com/tautulli for reverse proxy)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Enable Tautulli" Target="ENABLE_TAUTULLI" Default="false" Mode="" Description="Tautulli - Plex Analytics (Settings - Show Advanced - Web Interface - Enable Proxy, Set Public Domain to https://yahlp.yourdomain.com/tautulli and HTTP root to /tautulli)" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Tautulli URL" Target="TAUTULLI_URL" Default="http://tautulli:8181" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Tautulli Icon" Target="ICON_URL_TAUTULLI" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Maintainerr" Target="ENABLE_MAINTAINERR" Default="false" Mode="" Description="Maintainerr - Media Server Maintenance" Type="Variable" Display="always" Required="false" Mask="false"/>
+  
+  <Config Name="Enable Maintainerr" Target="ENABLE_MAINTAINERR" Default="false" Mode="" Description="Maintainerr - Media Server Maintenance (Enable BASE_URL environment variable on its docker and set to /maintainerr)" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Maintainerr URL" Target="MAINTAINERR_URL" Default="http://maintainerr:6246" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Maintainerr Icon" Target="ICON_URL_MAINTAINERR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- VOLUMES -->
-  <Config Name="Logs" Target="/var/log/apache2" Default="/mnt/user/appdata/yahlp-private-basic/logs" Mode="rw" Description="Apache Logs and Sites Config" Type="Path" Display="always" Required="true" Mask="false"/>
 </Container>

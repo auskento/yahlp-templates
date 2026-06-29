@@ -424,6 +424,9 @@
     </Variable>
   </Environment>
 
+  <!-- AUTHENTICATION -->
+  <Config Name="Authentication Type" Target="AUTHTYPE" Default="basic" Mode="" Description="Basic Auth (can be changed to: none, google, entra)" Type="Variable" Display="advanced" Required="true" Mask="false">basic</Config>
+
   <!-- DOMAIN & EMAIL -->
   <Config Name="Domain Name" Target="DOMAIN" Default="yahlp.yourdomain.com" Mode="" Description="Your domain (required for Let's Encrypt SSL)" Type="Variable" Display="always" Required="true" Mask="false"/>
   <Config Name="Email Address" Target="EMAIL" Default="your-email@yourdomain.com" Mode="" Description="Email for Let's Encrypt notifications (required)" Type="Variable" Display="always" Required="true" Mask="false"/>
@@ -436,9 +439,6 @@
   <Config Name="Dashboard Landing Page" Target="DASHBOARD_LANDING" Default="" Mode="" Description="Default page to load when accessing dashboard. Examples: radarr, sonarr, sonarr/calendar, radarr/upcoming. Leave blank to show YAHLP welcome screen." Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Category Order" Target="DASHBOARD_ORDER" Default="SAB,GET,HYD,TRA,QBI,DEL,SON,RAD,LID,WHI,PRO,SEE,BAZ,JEL,EMB,PLX,TAU" Mode="" Description="Service display order (3-letter codes, only enabled services shown). SAB=SABnzbd, GET=NZBGet, HYD=NZBHydra, TRA=Transmission, QBI=qBittorrent, DEL=Deluge, SON=Sonarr, RAD=Radarr, LID=Lidarr, WHI=Whisparr, PRO=Prowlarr, SEE=Seerr, BAZ=Bazarr, JEL=Jellyfin, EMB=Emby, PLX=Plex, TAU=Tautulli" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Enabled Torrent/Usenet Sites" Target="SITES_ENABLED" Default="" Mode="" Description="Comma-separated 3-letter codes. Torrent: TPB=Pirate Bay, FIL=FileList, HDB=HDBits, IPT=IP Torrents, 1337=1337x, YTS=YTS, LAT=LimeTorrents, NYA=Nyaa, PTP=PassThePopcorn. Usenet: DOG=DOGnzb, DRS=DrunkenSlug, NLF=nzb.life, NFW=NZBFinder, NGK=NZBgeek, PLA=nzbplanet, TAB=Tabula Rasa. Example: TPB,DOG,LAT,DRS" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- AUTHENTICATION TYPE (LOCKED) -->
-  <Config Name="Authentication Type" Target="AUTHTYPE" Default="basic" Mode="" Description="Basic Auth (locked for this template)" Type="Variable" Display="always" Required="true" Mask="false"/>
 
   <!-- AUTHENTICATION -->
   <Config Name="Basic Auth Credentials" Target="BASIC_AUTH_CREDENTIALS" Default="" Mode="" Description="Format: user:pass or user1:pass1|user2:pass2" Type="Variable" Display="always" Required="true" Mask="true"/>
@@ -524,15 +524,11 @@
   <Config Name="Plex Redirect URI" Target="PLEX_REDIRECT_URI" Default="https://plex.yourdomain.com/oauth2callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Plex Icon" Target="ICON_URL_PLEX" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
 
-  <Config Name="Enable Tautulli" Target="ENABLE_TAUTULLI" Default="false" Mode="" Description="Tautulli - Plex Analytics (Settings - Show Advanced - Web Interface - Enable Proxy, Set Public Domain to https://yahlp.yourdomain.com/tautulli for reverse proxy)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Enable Tautulli" Target="ENABLE_TAUTULLI" Default="false" Mode="" Description="Tautulli - Plex Analytics (Settings - Show Advanced - Web Interface - Enable Proxy, Set Public Domain to https://yahlp.yourdomain.com/tautulli and HTTP root to /tautulli)" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Tautulli URL" Target="TAUTULLI_URL" Default="http://tautulli:8181" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Tautulli Icon" Target="ICON_URL_TAUTULLI" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Maintainerr" Target="ENABLE_MAINTAINERR" Default="false" Mode="" Description="Maintainerr - Media Server Maintenance" Type="Variable" Display="always" Required="false" Mask="false"/>
+  
+  <Config Name="Enable Maintainerr" Target="ENABLE_MAINTAINERR" Default="false" Mode="" Description="Maintainerr - Media Server Maintenance (Enable BASE_URL environment variable on its docker and set to /maintainerr)" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Maintainerr URL" Target="MAINTAINERR_URL" Default="http://maintainerr:6246" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Maintainerr Icon" Target="ICON_URL_MAINTAINERR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- VOLUMES -->
-  <Config Name="Logs" Target="/var/log/apache2" Default="/mnt/user/appdata/yahlp-public-basic/logs" Mode="rw" Description="Apache Logs and Sites Config" Type="Path" Display="always" Required="true" Mask="false"/>
-  <Config Name="Letsencrypt" Target="/etc/letsencrypt" Default="/mnt/user/appdata/yahlp-public-basic/letsencrypt" Mode="rw" Description="Let's Encrypt Certificates" Type="Path" Display="always" Required="true" Mask="false"/>
 </Container>

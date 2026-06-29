@@ -505,4 +505,7 @@
   <Config Name="Enable Maintainerr" Target="ENABLE_MAINTAINERR" Default="false" Mode="" Description="Maintainerr - Media Server Maintenance" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Maintainerr URL" Target="MAINTAINERR_URL" Default="http://maintainerr:6246" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Maintainerr Icon" Target="ICON_URL_MAINTAINERR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <!-- VOLUMES -->
+  <Config Name="Logs" Target="/var/log/apache2" Default="/mnt/user/appdata/yahlp-private-basic/logs" Mode="rw" Description="Apache Logs and Sites Config" Type="Path" Display="always" Required="true" Mask="false"/>
 </Container>

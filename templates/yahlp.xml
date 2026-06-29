@@ -46,6 +46,15 @@
       <Exclude/>
       <IsFileShare>false</IsFileShare>
     </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/yahlp/letsencrypt</HostDir>
+      <ContainerDir>/etc/letsencrypt</ContainerDir>
+      <Mode>rw</Mode>
+      <Description>Let's Encrypt Certificates</Description>
+      <Access>rw</Access>
+      <Exclude/>
+      <IsFileShare>false</IsFileShare>
+    </Volume>
   </Data>
 
   <Environment>
@@ -550,5 +559,9 @@
   <Config Name="Enable Maintainerr" Target="ENABLE_MAINTAINERR" Default="false" Mode="" Description="Maintainerr - Media Server Maintenance" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Maintainerr URL" Target="MAINTAINERR_URL" Default="http://maintainerr:6246" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Maintainerr Icon" Target="ICON_URL_MAINTAINERR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <!-- VOLUMES -->
+  <Config Name="Logs" Target="/var/log/apache2" Default="/mnt/user/appdata/yahlp/logs" Mode="rw" Description="Apache Logs and Sites Config" Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Letsencrypt" Target="/etc/letsencrypt" Default="/mnt/user/appdata/yahlp/letsencrypt" Mode="rw" Description="Let's Encrypt Certificates" Type="Path" Display="always" Required="true" Mask="false"/>
 </Container>
 

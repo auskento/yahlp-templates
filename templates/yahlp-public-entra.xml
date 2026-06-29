@@ -514,4 +514,7 @@
   <Config Name="Enable Tautulli" Target="ENABLE_TAUTULLI" Default="false" Mode="" Description="Tautulli - Plex Analytics (Set the service's BaseURL/SubPath to /tautulli for reverse proxy)" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Tautulli URL" Target="TAUTULLI_URL" Default="http://tautulli:8181" Mode="" Description="Backend URL" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Tautulli Icon" Target="ICON_URL_TAUTULLI" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="Certificates Volume" Target="/etc/letsencrypt" Default="/mnt/user/appdata/yahlp-public-entra/letsencrypt" Mode="rw" Description="SSL Certificates" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/yahlp-public-entra/letsencrypt</Config>
+  <Config Name="Logs Volume" Target="/var/log/apache2" Default="/mnt/user/appdata/yahlp-public-entra/logs" Mode="rw" Description="Apache Logs" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/yahlp-public-entra/logs</Config>
 </Container>

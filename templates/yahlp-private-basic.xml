@@ -34,7 +34,25 @@
       <HostDir>/mnt/user/appdata/yahlp-private/logs</HostDir>
       <ContainerDir>/var/log/apache2</ContainerDir>
       <Mode>rw</Mode>
-      <Description>Apache Logs and Sites Config</Description>
+      <Description>Apache Logs</Description>
+      <Access>rw</Access>
+      <Exclude/>
+      <IsFileShare>false</IsFileShare>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/yahlp-private/letsencrypt</HostDir>
+      <ContainerDir>/etc/letsencrypt</ContainerDir>
+      <Mode>rw</Mode>
+      <Description>Let's Encrypt SSL Certificates</Description>
+      <Access>rw</Access>
+      <Exclude/>
+      <IsFileShare>false</IsFileShare>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/yahlp-private/apache-conf</HostDir>
+      <ContainerDir>/etc/apache2/sites-enabled</ContainerDir>
+      <Mode>rw</Mode>
+      <Description>Apache Virtual Host Configuration</Description>
       <Access>rw</Access>
       <Exclude/>
       <IsFileShare>false</IsFileShare>

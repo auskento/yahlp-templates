@@ -432,7 +432,7 @@
   <Config Name="Email Address" Target="EMAIL" Default="your-email@yourdomain.com" Mode="" Description="Email for Let's Encrypt notifications (required)" Type="Variable" Display="always" Required="true" Mask="false"/>
 
   <!-- DASHBOARD SETTINGS -->
-  <Config Name="Dashboard Style" Target="DASH_STYLE" Default="modern" Mode="" Description="Choose: classic, modern, sleek, minimal" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Dashboard Style" Target="DASH_STYLE" Default="modern" Mode="" Description="Choose: classic, modern, sleek, minimal. Append :only to disable style switcher (e.g., classic:only)" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Name" Target="DASHBOARD_NAME" Default="YAHLP" Mode="" Description="Title displayed in dashboard" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Icon URL" Target="DASHBOARD_ICON_URL" Default="" Mode="" Description="URL to download custom dashboard icon." Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Dashboard Theme" Target="DASHBOARD_THEME" Default="dark" Mode="" Description="Choose: dark or light" Type="Variable" Display="always" Required="false" Mask="false"/>

@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container version="2">
-  <Name>yahlp-public-google</Name>
-  <Repository>ghcr.io/auskento/yahlp:latest</Repository>
-  <Registry>https://ghcr.io</Registry>
+  <Name>YAHLP-GoogleOAuth</Name>
+  <Repository>auskento/yahlp</Repository>
+  <Registry>https://hub.docker.com</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/auskento/yahlp</Support>
-  <Project>https://github.com/auskento/yahlp</Project>
+  <Support>https://github.com/auskento/YAHLP</Support>
+  <Project>https://github.com/auskento/YAHLP</Project>
   <Category>Network:Web</Category>
   <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp-public-google.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/auskento/yahlp/main/yahlp-150.png</Icon>
-  <WebUI>https://yourdomain.com</WebUI>
-  <PostArgs/>
+  <Icon>https://raw.githubusercontent.com/auskento/YAHLP/main/html/icons/yahlp.png</Icon>
+  <WebUI>https://[IP]:[PORT:443]/</WebUI>
   <CloudSync>false</CloudSync>
-  <Description>yahlp - Public Mode with HTTPS and Google OAuth Authentication. Secure deployment with Google account login.</Description>
-  <Overview>yahlp - Yet Another HomeLab Portal - Public Google OAuth Template&#13;&#13;This template is configured for public mode deployment with:&#13;- HTTPS access (ports 80 for HTTP redirect and 443 for HTTPS)&#13;- Google OAuth authentication (sign in with Google account)&#13;- Let's Encrypt SSL certificate (automatic renewal)&#13;- Domain-based access&#13;&#13;Requires: Google Cloud Console credentials, valid domain, email address, and Let's Encrypt certificate provisioning.</Overview>
+  <Description>YAHLP - Public Mode with Google OAuth. HTTPS via Let's Encrypt + Google login authentication for internet-facing deployments.</Description>
+  <Overview>YAHLP - Yet Another HomeLab Portal - Public Mode with Google OAuth
+
+Configured for public internet deployment with:
+- HTTPS with automatic Let's Encrypt certificates
+- Google OAuth 2.0 authentication
+- Requires domain name and email address
+- Requires Google OAuth credentials from Google Cloud Console
+- Ports 80 and 443 must be port-forwarded
+
+Setup Requirements:
+1. Create OAuth 2.0 credentials in Google Cloud Console
+2. Set Redirect URI to: https://your-domain.com/auth/oauth2/callback
+3. Add DNS A record pointing your domain to your server IP
+4. Ensure ports 80 and 443 are port-forwarded from router
+5. Set TEST=false in advanced settings once ready for production</Overview>
   <Networking>
-    <Mode>br0</Mode>
+    <Mode>bridge</Mode>
     <Publish>
       <Port>
         <HostPort>80</HostPort>
@@ -38,19 +51,28 @@
   </Networking>
   <Data>
     <Volume>
-      <HostDir>/mnt/user/appdata/yahlp-public-google/logs</HostDir>
-      <ContainerDir>/var/log/apache2</ContainerDir>
+      <HostDir>/mnt/user/appdata/yahlp/letsencrypt</HostDir>
+      <ContainerDir>/etc/letsencrypt</ContainerDir>
       <Mode>rw</Mode>
-      <Description>Apache Logs and Sites Config</Description>
+      <Description>SSL Certificates</Description>
       <Access>rw</Access>
       <Exclude/>
       <IsFileShare>false</IsFileShare>
     </Volume>
     <Volume>
-      <HostDir>/mnt/user/appdata/yahlp-public-google/letsencrypt</HostDir>
-      <ContainerDir>/etc/letsencrypt</ContainerDir>
+      <HostDir>/mnt/user/appdata/yahlp/config</HostDir>
+      <ContainerDir>/etc/yahlp</ContainerDir>
       <Mode>rw</Mode>
-      <Description>Let's Encrypt SSL Certificates</Description>
+      <Description>Configuration</Description>
+      <Access>rw</Access>
+      <Exclude/>
+      <IsFileShare>false</IsFileShare>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/yahlp/logs</HostDir>
+      <ContainerDir>/var/log/apache2</ContainerDir>
+      <Mode>rw</Mode>
+      <Description>Apache Logs</Description>
       <Access>rw</Access>
       <Exclude/>
       <IsFileShare>false</IsFileShare>
@@ -58,491 +80,27 @@
   </Data>
 
   <Environment>
-    <!-- DEPLOYMENT & DOMAIN SETTINGS -->
-    <Variable>
-      <Name>ACCESS_MODE</Name>
-      <Value>public</Value>
-    </Variable>
-    <Variable>
-      <Name>DOMAIN</Name>
-      <Value>yahlp.yourdomain.com</Value>
-    </Variable>
-    <Variable>
-      <Name>EMAIL</Name>
-      <Value>your-email@yourdomain.com</Value>
-    </Variable>
-
-    <!-- TIMEZONE & DASHBOARD CUSTOMIZATION -->
-    <Variable>
-      <Name>TZ</Name>
-      <Value></Value>
-    </Variable>
-
-    <!-- DASHBOARD SETTINGS -->
-    <Variable>
-      <Name>DASH_STYLE</Name>
-      <Value>modern</Value>
-    </Variable>
-    <Variable>
-      <Name>DASHBOARD_NAME</Name>
-      <Value>YAHLP</Value>
-    </Variable>
-    <Variable>
-      <Name>DASHBOARD_ICON</Name>
-      <Value>/</Value>
-    </Variable>
-    <Variable>
-      <Name>DASHBOARD_THEME</Name>
-      <Value>dark</Value>
-    </Variable>
-    <Variable>
-      <Name>DASHBOARD_LANDING</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>DASHBOARD_ORDER</Name>
-      <Value>SAB,GET,HYD,TRA,QBI,DEL,SON,RAD,LID,WHI,PRO,SEE,BAZ,JEL,EMB,PLX,TAU,MNT</Value>
-    </Variable>
-
-    <!-- SITES CONFIGURATION -->
-    <Variable>
-      <Name>SITES_ENABLED</Name>
-      <Value></Value>
-    </Variable>
-
-    <!-- AUTHENTICATION -->
-    <Variable>
-      <Name>AUTHTYPE</Name>
-      <Value>google</Value>
-    </Variable>
-
-    <!-- GOOGLE AUTHENTICATION -->
-    <Variable>
-      <Name>GOOGLE_CLIENT_ID</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>GOOGLE_CLIENT_SECRET</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>GOOGLE_REDIRECT_URI</Name>
-      <Value>https://yourdomain.com</Value>
-    </Variable>
-
-    <!-- USENET SERVICES -->
-    <Variable>
-      <Name>ENABLE_SABNZBD</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>SABNZBD_URL</Name>
-      <Value>http://sabnzbd:8080</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_SABNZBD</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_NZBGET</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>NZBGET_URL</Name>
-      <Value>http://nzbget:6789</Value>
-    </Variable>
-    <Variable>
-      <Name>NZBGET_USER</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>NZBGET_PASS</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_NZBGET</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_NZBHYDRA</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>NZBHYDRA_URL</Name>
-      <Value>http://nzbhydra:5076</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_NZBHYDRA</Name>
-      <Value></Value>
-    </Variable>
-
-    <!-- TORRENTS SERVICES -->
-    <Variable>
-      <Name>ENABLE_TRANSMISSION</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>TRANSMISSION_URL</Name>
-      <Value>http://transmission:6969</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_TRANSMISSION</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_QBITTORRENT</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>QBITTORRENT_URL</Name>
-      <Value>http://qbittorrent:8080</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_QBITTORRENT</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_DELUGE</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>DELUGE_URL</Name>
-      <Value>http://deluge:8112</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_DELUGE</Name>
-      <Value></Value>
-    </Variable>
-
-    <!-- CONTENT SERVICES -->
-    <Variable>
-      <Name>ENABLE_SONARR</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>SONARR_URL</Name>
-      <Value>http://sonarr:8989</Value>
-    </Variable>
-    <Variable>
-      <Name>SONARR_LANDING</Name>
-      <Value>sonarr</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_SONARR</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_RADARR</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>RADARR_URL</Name>
-      <Value>http://radarr:7878</Value>
-    </Variable>
-    <Variable>
-      <Name>RADARR_LANDING</Name>
-      <Value>radarr</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_RADARR</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_WHISPARR</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>WHISPARR_URL</Name>
-      <Value>http://whisparr:6969</Value>
-    </Variable>
-    <Variable>
-      <Name>WHISPARR_LANDING</Name>
-      <Value>whisparr</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_WHISPARR</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_LIDARR</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>LIDARR_URL</Name>
-      <Value>http://lidarr:8686</Value>
-    </Variable>
-    <Variable>
-      <Name>LIDARR_LANDING</Name>
-      <Value>lidarr</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_LIDARR</Name>
-      <Value></Value>
-    </Variable>
-
-    <!-- SEARCH SERVICES -->
-    <Variable>
-      <Name>ENABLE_PROWLARR</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>PROWLARR_URL</Name>
-      <Value>http://prowlarr:9696</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_PROWLARR</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_SEERR</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>SEERR_URL</Name>
-      <Value>http://seerr:5055</Value>
-    </Variable>
-    <Variable>
-      <Name>SEERR_DOMAIN</Name>
-      <Value>seerr.yourdomain.com</Value>
-    </Variable>
-    <Variable>
-      <Name>SEERR_REDIRECT_URI</Name>
-      <Value>https://seerr.yourdomain.com/oauth2callback</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_SEERR</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_BAZARR</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>BAZARR_URL</Name>
-      <Value>http://bazarr:6767</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_BAZARR</Name>
-      <Value></Value>
-    </Variable>
-
-    <!-- MEDIA SERVICES -->
-    <Variable>
-      <Name>ENABLE_JELLYFIN</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>JELLYFIN_URL</Name>
-      <Value>http://jellyfin:8096</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_JELLYFIN</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_EMBY</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>EMBY_URL</Name>
-      <Value>http://emby:8096</Value>
-    </Variable>
-    <Variable>
-      <Name>EMBY_DOMAIN</Name>
-      <Value>emby.yourdomain.com</Value>
-    </Variable>
-    <Variable>
-      <Name>EMBY_REDIRECT_URI</Name>
-      <Value>https://emby.yourdomain.com/oauth2callback</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_EMBY</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_PLEX</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>PLEX_URL</Name>
-      <Value>http://plex:32400</Value>
-    </Variable>
-    <Variable>
-      <Name>PLEX_DOMAIN</Name>
-      <Value>plex.yourdomain.com</Value>
-    </Variable>
-    <Variable>
-      <Name>PLEX_REDIRECT_URI</Name>
-      <Value>https://plex.yourdomain.com/oauth2callback</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_PLEX</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_TAUTULLI</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>TAUTULLI_URL</Name>
-      <Value>http://tautulli:8181</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_TAUTULLI</Name>
-      <Value></Value>
-    </Variable>
-
-    <Variable>
-      <Name>ENABLE_MAINTAINERR</Name>
-      <Value>false</Value>
-    </Variable>
-    <Variable>
-      <Name>MAINTAINERR_URL</Name>
-      <Value>http://maintainerr:6246</Value>
-    </Variable>
-    <Variable>
-      <Name>ICON_URL_MAINTAINERR</Name>
-      <Value></Value>
-    </Variable>
-
-    <!-- SSL CONFIGURATION (Advanced) -->
-    <Variable>
-      <Name>SSL_PROTOCOLS</Name>
-      <Value>all -SSLv2 -SSLv3 -TLSv1 -TLSv1.1</Value>
-    </Variable>
-    <Variable>
-      <Name>SSL_CIPHERS</Name>
-      <Value>HIGH:!aNULL:!MD5</Value>
-    </Variable>
-
-    <!-- APACHE LOGGING -->
-    <Variable>
-      <Name>APACHE_LOG_LEVEL</Name>
-      <Value>warn</Value>
-    </Variable>
+    <Variable><Name>ACCESS_MODE</Name><Value>public</Value></Variable>
+    <Variable><Name>DOMAIN</Name><Value></Value></Variable>
+    <Variable><Name>EMAIL</Name><Value></Value></Variable>
+    <Variable><Name>DASHBOARD_NAME</Name><Value>YAHLP</Value></Variable>
+    <Variable><Name>DASHBOARD_STYLE</Name><Value>modern</Value></Variable>
+    <Variable><Name>DASHBOARD_COLOR</Name><Value>#00A99D</Value></Variable>
+    <Variable><Name>AUTHTYPE</Name><Value>google</Value></Variable>
+    <Variable><Name>GOOGLE_CLIENT_ID</Name><Value></Value></Variable>
+    <Variable><Name>GOOGLE_CLIENT_SECRET</Name><Value></Value></Variable>
+    <Variable><Name>GOOGLE_REDIRECT_URI</Name><Value></Value></Variable>
+    <Variable><Name>TZ</Name><Value>UTC</Value></Variable>
   </Environment>
 
-  <!-- AUTHENTICATION -->
-  <Config Name="Authentication Type" Target="AUTHTYPE" Default="google" Mode="" Description="Google OAuth (can be changed to: none, basic, entra)" Type="Variable" Display="advanced" Required="true" Mask="false">google</Config>
-  <Config Name="Test Mode" Target="TEST" Default="false" Mode="" Description="Enable Let's Encrypt --dry-run mode (test without rate limits). WARNING: Certificates will NOT be issued." Type="Variable" Display="advanced" Required="false" Mask="false"/>
-
-  <!-- DOMAIN & EMAIL -->
-  <Config Name="Domain Name" Target="DOMAIN" Default="yahlp.yourdomain.com" Mode="" Description="Your domain (required for Let's Encrypt SSL)" Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="Email Address" Target="EMAIL" Default="your-email@yourdomain.com" Mode="" Description="Email for Let's Encrypt notifications (required)" Type="Variable" Display="always" Required="true" Mask="false"/>
-
-  <!-- DASHBOARD SETTINGS -->
-  <Config Name="Dashboard Style" Target="DASH_STYLE" Default="modern" Mode="" Description="Choose: classic, modern, sleek, minimal. Append :only to disable style switcher (e.g., classic:only)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Dashboard Name" Target="DASHBOARD_NAME" Default="YAHLP" Mode="" Description="Title displayed in dashboard" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Dashboard Icon URL" Target="DASHBOARD_ICON_URL" Default="" Mode="" Description="URL to download custom dashboard icon." Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Dashboard Theme" Target="DASHBOARD_THEME" Default="dark" Mode="" Description="Choose: dark or light" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Dashboard Panel Color" Target="DASHBOARD_COLOR" Default="#1a1a1a" Mode="" Description="Panel background color (6-digit hex code, e.g., #1a1a1a)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Dashboard Landing Page" Target="DASHBOARD_LANDING" Default="" Mode="" Description="Default page to load when accessing dashboard. Examples: radarr, sonarr, sonarr/calendar, radarr/upcoming. Leave blank to show YAHLP welcome screen." Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Dashboard Category Order" Target="DASHBOARD_ORDER" Default="SAB,GET,HYD,TRA,QBI,DEL,SON,RAD,LID,WHI,PRO,SEE,BAZ,JEL,EMB,PLX,TAU" Mode="" Description="Service display order (3-letter codes, only enabled services shown). SAB=SABnzbd, GET=NZBGet, HYD=NZBHydra, TRA=Transmission, QBI=qBittorrent, DEL=Deluge, SON=Sonarr, RAD=Radarr, LID=Lidarr, WHI=Whisparr, PRO=Prowlarr, SEE=Seerr, BAZ=Bazarr, JEL=Jellyfin, EMB=Emby, PLX=Plex, TAU=Tautulli" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Enabled Torrent/Usenet Sites" Target="SITES_ENABLED" Default="" Mode="" Description="Comma-separated 3-letter codes. Torrent: TPB=Pirate Bay, FIL=FileList, HDB=HDBits, IPT=IP Torrents, 1337=1337x, YTS=YTS, LAT=LimeTorrents, NYA=Nyaa, PTP=PassThePopcorn. Usenet: DOG=DOGnzb, DRS=DrunkenSlug, NLF=nzb.life, NFW=NZBFinder, NGK=NZBgeek, PLA=nzbplanet, TAB=Tabula Rasa. Example: TPB,DOG,LAT,DRS" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- GOOGLE AUTHENTICATION -->
-  <Config Name="Google Client ID" Target="GOOGLE_CLIENT_ID" Default="" Mode="" Description="From Google Cloud Console (REQUIRED)" Type="Variable" Display="always" Required="true" Mask="true"/>
-  <Config Name="Google Client Secret" Target="GOOGLE_CLIENT_SECRET" Default="" Mode="" Description="From Google Cloud Console (REQUIRED)" Type="Variable" Display="always" Required="true" Mask="true"/>
-  <Config Name="Google Redirect URI" Target="GOOGLE_REDIRECT_URI" Default="https://yourdomain.com" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- USENET SERVICES -->
-  <Config Name="Enable SABnzbd" Target="ENABLE_SABNZBD" Default="false" Mode="" Description="SABnzbd - Usenet Client (Config - Special - url_base() to /sabnzbd)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="SABnzbd URL" Target="SABNZBD_URL" Default="http://sabnzbd:8080" Mode="" Description="Your local URL" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="SABnzbd Icon" Target="ICON_URL_SABNZBD" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable NZBGet" Target="ENABLE_NZBGET" Default="false" Mode="" Description="NZBGet - Usenet Client (Set User and Pass below to the NZBGet account for auth bypass, leaving blank will have NZBGet prompt for its credentials" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="NZBGet URL" Target="NZBGET_URL" Default="http://nzbget:6789" Mode="" Description="Your local URL" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="NZBGet Username" Target="NZBGET_USER" Default="" Mode="" Description="NZBGet username (if required)" Type="Variable" Display="always" Required="false" Mask="true"/>
-  <Config Name="NZBGet Password" Target="NZBGET_PASS" Default="" Mode="" Description="NZBGet password (if required)" Type="Variable" Display="always" Required="false" Mask="true"/>
-  <Config Name="NZBGet Icon" Target="ICON_URL_NZBGET" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable NZBHydra" Target="ENABLE_NZBHYDRA" Default="false" Mode="" Description="NZBHydra - Usenet Meta Indexer (Config - Main - URLBase to /nzbhydra)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="NZBHydra URL" Target="NZBHYDRA_URL" Default="http://nzbhydra:5076" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="NZBHydra Icon" Target="ICON_URL_NZBHYDRA" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- TORRENTS SERVICES -->
-  <Config Name="Enable Transmission" Target="ENABLE_TRANSMISSION" Default="false" Mode="" Description="Transmission - Torrent Client" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Transmission URL" Target="TRANSMISSION_URL" Default="http://transmission:6969" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Transmission Icon" Target="ICON_URL_TRANSMISSION" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable qBittorrent" Target="ENABLE_QBITTORRENT" Default="false" Mode="" Description="qBittorrent - Torrent Client" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="qBittorrent URL" Target="QBITTORRENT_URL" Default="http://qbittorrent:8080" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="qBittorrent Icon" Target="ICON_URL_QBITTORRENT" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Deluge" Target="ENABLE_DELUGE" Default="false" Mode="" Description="Deluge - Torrent Client" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Deluge URL" Target="DELUGE_URL" Default="http://deluge:8112" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Deluge Icon" Target="ICON_URL_DELUGE" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- CONTENT SERVICES -->
-  <Config Name="Enable Sonarr" Target="ENABLE_SONARR" Default="false" Mode="" Description="Sonarr - TV Show Automation (Settings - General - URL Base to /sonarr)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Sonarr URL" Target="SONARR_URL" Default="http://sonarr:8989" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Sonarr Landing" Target="SONARR_LANDING" Default="" Mode="" Description="Landing page (e.g., sonarr, sonarr/calendar)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Sonarr Icon" Target="ICON_URL_SONARR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Radarr" Target="ENABLE_RADARR" Default="false" Mode="" Description="Radarr - Movie Automation ((Settings - General - URL Base to /radarr)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Radarr URL" Target="RADARR_URL" Default="http://radarr:7878" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Radarr Landing" Target="RADARR_LANDING" Default="" Mode="" Description="Landing page (e.g., radarr, radarr/calendar)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Radarr Icon" Target="ICON_URL_RADARR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Whisparr" Target="ENABLE_WHISPARR" Default="false" Mode="" Description="Whisparr - Adult Content Automation (Settings - General - URL Base to /whisparr)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Whisparr URL" Target="WHISPARR_URL" Default="http://whisparr:6969" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Whisparr Landing" Target="WHISPARR_LANDING" Default="" Mode="" Description="Landing page" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Whisparr Icon" Target="ICON_URL_WHISPARR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Lidarr" Target="ENABLE_LIDARR" Default="false" Mode="" Description="Lidarr - Music Automation (Settings - General - URL Base to to /lidarr)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Lidarr URL" Target="LIDARR_URL" Default="http://lidarr:8686" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Lidarr Landing" Target="LIDARR_LANDING" Default="" Mode="" Description="Landing page" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Lidarr Icon" Target="ICON_URL_LIDARR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- SEARCH SERVICES -->
-  <Config Name="Enable Prowlarr" Target="ENABLE_PROWLARR" Default="false" Mode="" Description="Prowlarr - Indexer Manager (Settings - General - URL Base to /prowlarr)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Prowlarr URL" Target="PROWLARR_URL" Default="http://prowlarr:9696" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Prowlarr Icon" Target="ICON_URL_PROWLARR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Seerr" Target="ENABLE_SEERR" Default="false" Mode="" Description="Seerr - Request Manager (Seer uses a subdomain, make sure you have a DNS record configured)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Seerr URL" Target="SEERR_URL" Default="http://seerr:5055" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Seerr Domain" Target="SEERR_DOMAIN" Default="seerr.yourdomain.com" Mode="" Description="Subdomain for Seerr" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Seerr Redirect URI" Target="SEERR_REDIRECT_URI" Default="https://seerr.yourdomain.com/oauth2callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Seerr Icon" Target="ICON_URL_SEERR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Bazarr" Target="ENABLE_BAZARR" Default="false" Mode="" Description="Bazarr - Subtitle Manager (Settings - General - Base URL to /bazarr)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Bazarr URL" Target="BAZARR_URL" Default="http://bazarr:6767" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Bazarr Icon" Target="ICON_URL_BAZARR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <!-- MEDIA SERVICES -->
-  <Config Name="Enable Jellyfin" Target="ENABLE_JELLYFIN" Default="false" Mode="" Description="Jellyfin - Media Server (Settings -Admin Dash - Networking - Base URL /jellyfin)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Jellyfin URL" Target="JELLYFIN_URL" Default="http://jellyfin:8096" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Jellyfin Icon" Target="ICON_URL_JELLYFIN" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Emby" Target="ENABLE_EMBY" Default="false" Mode="" Description="Emby - Media Server (uses a subdomain, make sure you have a DNS record configured)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Emby URL" Target="EMBY_URL" Default="http://emby:8096" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Emby Domain" Target="EMBY_DOMAIN" Default="emby.yourdomain.com" Mode="" Description="Subdomain for Emby" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Emby Redirect URI" Target="EMBY_REDIRECT_URI" Default="https://emby.yourdomain.com/oauth2callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Emby Icon" Target="ICON_URL_EMBY" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Plex" Target="ENABLE_PLEX" Default="false" Mode="" Description="Plex - Media Server (uses a subdomain, make sure you have a DNS record configured)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Plex URL" Target="PLEX_URL" Default="http://plex:32400" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Plex Domain" Target="PLEX_DOMAIN" Default="plex.yourdomain.com" Mode="" Description="Subdomain for Plex" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Plex Redirect URI" Target="PLEX_REDIRECT_URI" Default="https://plex.yourdomain.com/oauth2callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Plex Icon" Target="ICON_URL_PLEX" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-
-  <Config Name="Enable Tautulli" Target="ENABLE_TAUTULLI" Default="false" Mode="" Description="Tautulli - Plex Analytics (Settings - Show Advanced - Web Interface - Enable Proxy, Set Public Domain to https://yahlp.yourdomain.com/tautulli and HTTP root to /tautulli)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Tautulli URL" Target="TAUTULLI_URL" Default="http://tautulli:8181" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Tautulli Icon" Target="ICON_URL_TAUTULLI" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  
-  <Config Name="Enable Maintainerr" Target="ENABLE_MAINTAINERR" Default="false" Mode="" Description="Maintainerr - Media Server Maintenance (Enable BASE_URL environment variable on its docker and set to /maintainerr)" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Maintainerr URL" Target="MAINTAINERR_URL" Default="http://maintainerr:6246" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Maintainerr Icon" Target="ICON_URL_MAINTAINERR" Default="" Mode="" Description="Custom icon URL (leave blank for included)" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Access Mode" Target="ACCESS_MODE" Default="public" Mode="" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Domain" Target="DOMAIN" Default="" Mode="" Description="Your domain (e.g., example.com)" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Email" Target="EMAIL" Default="" Mode="" Description="Email for Let's Encrypt notifications" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Google Client ID" Target="GOOGLE_CLIENT_ID" Default="" Mode="" Description="From Google Cloud Console" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Google Client Secret" Target="GOOGLE_CLIENT_SECRET" Default="" Mode="" Description="From Google Cloud Console" Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Google Redirect URI" Target="GOOGLE_REDIRECT_URI" Default="" Mode="" Description="https://your-domain.com/auth/oauth2/callback" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Dashboard Name" Target="DASHBOARD_NAME" Default="YAHLP" Mode="" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Dashboard Layout" Target="DASHBOARD_STYLE" Default="modern" Mode="" Description="Choose: classic, modern, sleek, minimal" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Accent Color" Target="DASHBOARD_COLOR" Default="#00A99D" Mode="" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Timezone" Target="TZ" Default="UTC" Mode="" Type="Variable" Display="advanced" Required="false" Mask="false"/>
 </Container>

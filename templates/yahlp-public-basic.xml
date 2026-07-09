@@ -91,6 +91,9 @@ Setup Requirements:
   <Config Name="Enable Prowlarr" Target="ENABLE_PROWLARR" Default="false|true" Mode="" Description="Prowlarr - Indexer Manager (Settings - General - URL Base to /prowlarr)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Prowlarr URL" Target="PROWLARR_URL" Default="http://prowlarr:9696" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Prowlarr Icon" Target="ICON_URL_PROWLARR" Default="" Mode="" Description="URL to download custom Prowlarr icon (leave blank for builtin)" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="Enable Jackett" Target="ENABLE_JACKETT" Default="false|true" Mode="" Description="Jackett - Indexer Aggregator (Config - Admin - url_base() to /jackett)" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="Jackett URL" Target="JACKETT_URL" Default="http://jackett:9117" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="Jackett Icon" Target="ICON_URL_JACKETT" Default="" Mode="" Description="URL to download custom Jackett icon (leave blank for builtin)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Enable Seerr" Target="ENABLE_SEERR" Default="false|true" Mode="" Description="Seerr - Request Manager (In Public mode, Seer uses a subdomain, make sure you have a DNS record configured)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Seerr URL" Target="SEERR_URL" Default="http://seerr:5055" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Seerr Domain" Target="SEERR_DOMAIN" Default="seerr.yourdomain.com" Mode="" Description="Subdomain for Seerr" Type="Variable" Display="always" Required="false" Mask="false" />

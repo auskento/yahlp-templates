@@ -66,22 +66,96 @@ Perfect for private lab environments without public exposure.</Overview>
   </Data>
 
   <Environment>
-    <Variable><Name>ACCESS_MODE</Name><Value>private</Value></Variable>
-    <Variable><Name>IP</Name><Value></Value></Variable>
-    <Variable><Name>DASHBOARD_NAME</Name><Value>YAHLP</Value></Variable>
-    <Variable><Name>DASHBOARD_STYLE</Name><Value>modern</Value></Variable>
-    <Variable><Name>DASHBOARD_COLOR</Name><Value>#00A99D</Value></Variable>
-    <Variable><Name>AUTHTYPE</Name><Value>basic</Value></Variable>
-    <Variable><Name>BASIC_AUTH_CREDENTIALS</Name><Value></Value></Variable>
-    <Variable><Name>TZ</Name><Value>UTC</Value></Variable>
+    <Variable>
+      <Name>ACCESS_MODE</Name>
+      <Value>private</Value>
+      <Description>Choose: public (HTTPS with Let's Encrypt) or private (HTTP on internal network)</Description>
+      <Display>advanced</Display>
+      <Required>false</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Name>IP</Name>
+      <Value></Value>
+      <Description>Server IP for private mode (e.g., 192.168.1.100)</Description>
+      <Display>always</Display>
+      <Required>true</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Name>TZ</Name>
+      <Value>UTC</Value>
+      <Description>Container timezone (e.g., Australia/Sydney, UTC, US/Eastern). Leave blank for default.</Description>
+      <Display>advanced</Display>
+      <Required>false</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Name>DASHBOARD_NAME</Name>
+      <Value>YAHLP</Value>
+      <Description>Title displayed in dashboard</Description>
+      <Display>always</Display>
+      <Required>false</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Name>DASHBOARD_STYLE</Name>
+      <Value>modern</Value>
+      <Description>Choose: classic, modern, sleek, minimal. Append :only to disable style switcher (e.g., classic:only)</Description>
+      <Display>always</Display>
+      <Required>false</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Name>DASHBOARD_COLOR</Name>
+      <Value>#00A99D</Value>
+      <Description>Accent color (hex code, e.g., #00A99D)</Description>
+      <Display>always</Display>
+      <Required>false</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Name>DASHBOARD_LANDING</Name>
+      <Value></Value>
+      <Description>Default page to load when accessing dashboard. Examples: radarr, sonarr, sonarr/calendar, radarr/upcoming. Leave blank to show YAHLP welcome screen.</Description>
+      <Display>always</Display>
+      <Required>false</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Name>DASHBOARD_ORDER</Name>
+      <Value>SAB,GET,HYD,TRA,QBI,DEL,PRO,JAC,SON,RAD,LID,WHI,SEE,BAZ,TAU,MNT,JEL,PLX,EMB</Value>
+      <Description>Service display order (3-letter codes, only enabled services shown). SAB=SABnzbd, GET=NZBGet, HYD=NZBHydra, TRA=Transmission, QBI=qBittorrent, DEL=Deluge, PRO=Prowlarr, JAC=Jackett, SON=Sonarr, RAD=Radarr, LID=Lidarr, WHI=Whisparr, SEE=Seerr, BAZ=Bazarr, TAU=Tautulli, MNT=Maintainerr, JEL=Jellyfin, PLX=Plex, EMB=Emby</Description>
+      <Display>advanced</Display>
+      <Required>false</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Name>AUTHTYPE</Name>
+      <Value>basic</Value>
+      <Description>Choose: none, basic, google, entra</Description>
+      <Display>always</Display>
+      <Required>true</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Name>BASIC_AUTH_CREDENTIALS</Name>
+      <Value></Value>
+      <Description>Format: user:pass or user1:pass1|user2:pass2</Description>
+      <Display>always</Display>
+      <Required>true</Required>
+      <Mask>true</Mask>
+    </Variable>
   </Environment>
 
-  <Config Name="Access Mode" Target="ACCESS_MODE" Default="private" Mode="" Type="Variable" Display="advanced" Required="false" Mask="false"/>
-  <Config Name="Internal IP" Target="IP" Default="" Mode="" Description="Your server IP (e.g., 192.168.1.100)" Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="Dashboard Name" Target="DASHBOARD_NAME" Default="YAHLP" Mode="" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Dashboard Layout" Target="DASHBOARD_STYLE" Default="modern" Mode="" Description="Choose: classic, modern, sleek, minimal" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Accent Color" Target="DASHBOARD_COLOR" Default="#00A99D" Mode="" Type="Variable" Display="always" Required="false" Mask="false"/>
-  <Config Name="Authentication" Target="AUTHTYPE" Default="basic" Mode="" Type="Variable" Display="advanced" Required="false" Mask="false"/>
-  <Config Name="Basic Auth Credentials" Target="BASIC_AUTH_CREDENTIALS" Default="" Mode="" Description="Format: user:pass or user1:pass1|user2:pass2" Type="Variable" Display="always" Required="true" Mask="true"/>
-  <Config Name="Timezone" Target="TZ" Default="UTC" Mode="" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Access Mode" Target="ACCESS_MODE" Default="private" Mode="" Description="Set to private for internal networks (HTTP only)" Type="Variable" Display="advanced" Required="false" Mask="false" />
+  <Config Name="Internal IP" Target="IP" Default="" Mode="" Description="Your server IP (e.g., 192.168.1.100)" Type="Variable" Display="always" Required="true" Mask="false" />
+  <Config Name="Timezone" Target="TZ" Default="UTC" Mode="" Description="Container timezone (e.g., Australia/Sydney, UTC, US/Eastern). Leave blank for default." Type="Variable" Display="advanced" Required="false" Mask="false" />
+  <Config Name="Dashboard Name" Target="DASHBOARD_NAME" Default="YAHLP" Mode="" Description="Title displayed in dashboard" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="Dashboard Style" Target="DASHBOARD_STYLE" Default="modern" Mode="" Description="Choose: classic, modern, sleek, minimal. Append :only to disable style switcher (e.g., classic:only)" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="Dashboard Color" Target="DASHBOARD_COLOR" Default="#00A99D" Mode="" Description="Accent color (hex code, e.g., #00A99D)" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="Dashboard Landing Page" Target="DASHBOARD_LANDING" Default="" Mode="" Description="Default page to load when accessing dashboard. Examples: radarr, sonarr, sonarr/calendar, radarr/upcoming. Leave blank to show YAHLP welcome screen." Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="Dashboard Service Order" Target="DASHBOARD_ORDER" Default="SAB,GET,HYD,TRA,QBI,DEL,PRO,JAC,SON,RAD,LID,WHI,SEE,BAZ,TAU,MNT,JEL,PLX,EMB" Mode="" Description="Service display order (3-letter codes, only enabled services shown)." Type="Variable" Display="advanced" Required="false" Mask="false" />
+  <Config Name="Authentication Type" Target="AUTHTYPE" Default="basic" Mode="" Description="Choose: none, basic, google, entra" Type="Variable" Display="always" Required="true" Mask="false" />
+  <Config Name="Basic Auth Credentials" Target="BASIC_AUTH_CREDENTIALS" Default="" Mode="" Description="Format: user:pass or user1:pass1|user2:pass2" Type="Variable" Display="always" Required="true" Mask="true" />
 </Container>

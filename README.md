@@ -6,15 +6,15 @@ These templates are part of the [Unraid Community Applications](https://unraid.n
 
 ## Overview
 
-YAHLP (Yet Another HomeLab Portal) is a comprehensive reverse proxy and unified media server dashboard that supports:
-- **18 services** (Radarr, Sonarr, Plex, Emby, Jellyfin, Maintainerr, and more)
-- **4 dashboard styles** (Classic, Modern, Sleek, Minimal)
-- **Dark/Light theme toggle** with persistent preference
+YAHLP (Yet Another HomeLab Portal) is a production-ready reverse proxy and unified media server dashboard that supports:
+- **19 services** (Sonarr, Radarr, Lidarr, Whisparr, Prowlarr, Jackett, Seerr, Bazarr, SABnzbd, NZBGet, NZBHydra, Transmission, qBittorrent, Deluge, Jellyfin, Emby, Plex, Tautulli, Maintainerr)
+- **5 responsive layouts** (Classic, Modern, Sleek, Minimal, Mobile-optimized)
 - **Multiple authentication methods** (None, Basic Auth, Google OAuth2, Entra ID)
 - **Public and Private deployment modes**
 - **Automatic HTTPS** (Let's Encrypt) for public deployments
-- **Subdomain-based routing** for media services
-- **3-digit service codes** for easy dashboard ordering and configuration
+- **Real-time service health monitoring**
+- **Customizable service ordering and theming**
+- **3-digit service codes** for easy dashboard configuration
 
 ## Available Templates
 
@@ -28,15 +28,22 @@ Choose the template that matches your deployment scenario:
 **Features:**
 - HTTP only (no SSL needed)
 - Basic authentication (username/password)
-- Internal IP address access (e.g., `http://192.168.x.x`)
+- Internal IP address access (e.g., `http://192.168.1.100`)
 - No certificate management
 - Minimal resource usage
+- Perfect for home labs and testing
 
 **Required Configuration:**
-- `IP`: Container IP address on your network
+- `IP`: Your server IP address (e.g., `192.168.1.100`)
+- `AUTHTYPE`: Set to `basic`
 - `BASIC_AUTH_CREDENTIALS`: Username and password (format: `user:pass` or `user1:pass1|user2:pass2`)
 
-**Recommended for:** Home labs, internal networks, testing
+**Optional Configuration:**
+- `DASHBOARD_NAME`: Custom dashboard title
+- `DASHBOARD_STYLE`: Layout choice (classic, modern, sleek, minimal)
+- `DASHBOARD_COLOR`: Accent color in hex format
+- `DASHBOARD_LANDING`: Default page to load
+- `DASHBOARD_ORDER`: Service display order (see service codes reference)
 
 ---
 
@@ -50,15 +57,23 @@ Choose the template that matches your deployment scenario:
 - Basic authentication (username/password)
 - Full domain-based access (e.g., `https://yourdomain.com`)
 - Automatic certificate renewal
-- Can add subdomain routing (e.g., `emby.yourdomain.com`)
+- Ideal for small deployments or additional security layer
 
 **Required Configuration:**
 - `DOMAIN`: Your domain name (e.g., `yourdomain.com`)
 - `EMAIL`: Email for Let's Encrypt notifications
+- `AUTHTYPE`: Set to `basic`
 - `BASIC_AUTH_CREDENTIALS`: Username and password (format: `user:pass` or `user1:pass1|user2:pass2`)
-- Port forwarding: 80 and 443 to your Unraid server
+- **Network:** Port forwarding for ports 80 and 443 to your Unraid server
 
-**Recommended for:** External access with simple authentication
+**Optional Configuration:**
+- Dashboard settings (name, style, color, landing page, service order)
+- `TEST_MODE`: Set to `false` when ready for production certificates
+
+**Setup Requirements:**
+1. Add DNS A record pointing your domain to your server IP
+2. Ensure ports 80 and 443 are port-forwarded from your router
+3. Set `TEST_MODE=false` once ready for production (avoids Let's Encrypt rate limiting)
 
 ---
 
@@ -72,58 +87,78 @@ Choose the template that matches your deployment scenario:
 - Google OAuth2 authentication (requires Google Cloud setup)
 - Full domain-based access (e.g., `https://yourdomain.com`)
 - Automatic certificate renewal
-- Can add subdomain routing for media services
+- More secure than Basic Auth
 
 **Required Configuration:**
 - `DOMAIN`: Your domain name (e.g., `yourdomain.com`)
 - `EMAIL`: Email for Let's Encrypt notifications
+- `AUTHTYPE`: Set to `google`
 - `GOOGLE_CLIENT_ID`: From Google Cloud Console
 - `GOOGLE_CLIENT_SECRET`: From Google Cloud Console
-- `GOOGLE_REDIRECT_URI`: OAuth redirect URL (usually `https://yourdomain.com` or `https://yourdomain.com/oauth2callback`)
-- Port forwarding: 80 and 443 to your Unraid server
+- `GOOGLE_REDIRECT_URI`: OAuth callback URL (e.g., `https://yourdomain.com/auth/oauth2/callback`)
+- **Network:** Port forwarding for ports 80 and 443 to your Unraid server
 
 **Setup Steps:**
 1. Create a project in [Google Cloud Console](https://console.cloud.google.com)
-2. Create OAuth 2.0 credentials (Web application)
-3. Add authorized redirect URI
-4. Copy Client ID and Secret to template
-
-**Recommended for:** External access with Google account-based authentication
+2. Create OAuth 2.0 credentials (Web application type)
+3. Add authorized redirect URI: `https://yourdomain.com/auth/oauth2/callback`
+4. Copy Client ID and Secret to the template
+5. Add DNS A record for your domain
+6. Ensure ports 80 and 443 are port-forwarded
+7. Set `TEST_MODE=false` when ready for production
 
 ---
 
 ### 4. **Public Mode with Entra ID (Microsoft) OAuth**
 **File:** `yahlp-public-entra.xml`
 
-**Best for:** External access protected by Microsoft/Azure AD authentication
+**Best for:** External access protected by Microsoft/Azure AD authentication (enterprise deployments)
 
 **Features:**
 - HTTPS via Let's Encrypt (automatic SSL certificates)
 - Entra ID (Azure AD) OAuth2 authentication
 - Full domain-based access (e.g., `https://yourdomain.com`)
 - Automatic certificate renewal
-- Can add subdomain routing for media services
 - Enterprise-grade authentication
 
 **Required Configuration:**
 - `DOMAIN`: Your domain name (e.g., `yourdomain.com`)
 - `EMAIL`: Email for Let's Encrypt notifications
+- `AUTHTYPE`: Set to `entra`
 - `ENTRA_CLIENT_ID`: Azure AD application ID
 - `ENTRA_CLIENT_SECRET`: Azure AD application secret
-- `ENTRA_REDIRECT_URI`: OAuth redirect URL (e.g., `https://yourdomain.com/auth/oauth2/callback`)
-- `ENTRA_PROVIDER_METADATA_URL`: OpenID configuration URL from Azure AD
+- `ENTRA_TENANT_ID`: Your Azure Tenant ID
+- `ENTRA_REDIRECT_URI`: OAuth callback URL (e.g., `https://yourdomain.com/auth/oauth2/callback`)
+- `ENTRA_METADATA_URL`: OpenID configuration URL (format: `https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration`)
 - `ENTRA_CRYPTO_PASSPHRASE`: Session encryption key (auto-generated if left blank)
-- Port forwarding: 80 and 443 to your Unraid server
+- **Network:** Port forwarding for ports 80 and 443 to your Unraid server
 
 **Setup Steps:**
 1. Go to [Azure Portal](https://portal.azure.com)
-2. Register a new application in Azure AD
-3. Configure OAuth 2.0 redirect URI
-4. Create a client secret
-5. Get OpenID configuration URL from app settings
-6. Copy credentials to template
+2. Navigate to Azure AD → App registrations
+3. Register a new application
+4. Configure OAuth 2.0 redirect URI: `https://yourdomain.com/auth/oauth2/callback`
+5. Create a client secret
+6. Get your Tenant ID from app settings
+7. Get OpenID configuration URL from app settings
+8. Copy credentials to the template
+9. Add DNS A record for your domain
+10. Ensure ports 80 and 443 are port-forwarded
+11. Set `TEST_MODE=false` when ready for production
 
-**Recommended for:** Enterprise networks, organizations using Microsoft 365
+---
+
+### Master Template (Advanced Users)
+**File:** `yahlp.xml`
+
+Comprehensive template showing **all available variables and configuration options**. Use this for:
+- Advanced custom configurations
+- Per-service URL and API key management
+- Fine-grained control over dashboard settings
+- Integration with automation systems
+- Complete reference documentation
+
+This template includes all 19 services with individual enable/disable and URL configuration for each.
 
 ---
 
@@ -139,247 +174,225 @@ All services use 3-letter codes for dashboard configuration. Use these codes in 
 | **TRA** | Transmission | TORRENTS |
 | **QBI** | qBittorrent | TORRENTS |
 | **DEL** | Deluge | TORRENTS |
+| **PRO** | Prowlarr | SEARCH |
+| **JAC** | Jackett | SEARCH |
 | **SON** | Sonarr | CONTENT |
 | **RAD** | Radarr | CONTENT |
 | **LID** | Lidarr | CONTENT |
 | **WHI** | Whisparr | CONTENT |
-| **PRO** | Prowlarr | SEARCH |
-| **SEE** | Seerr | SEARCH |
-| **BAZ** | Bazarr | SEARCH |
+| **SEE** | Seerr | INFRA |
+| **BAZ** | Bazarr | INFRA |
+| **TAU** | Tautulli | INFRA |
+| **MNT** | Maintainerr | INFRA |
 | **JEL** | Jellyfin | MEDIA |
-| **EMB** | Emby | MEDIA |
 | **PLX** | Plex | MEDIA |
-| **TAU** | Tautulli | MEDIA |
-| **MNT** | Maintainerr | MEDIA |
+| **EMB** | Emby | MEDIA |
 
 **Example DASHBOARD_ORDER configurations:**
 ```
 # Default order (all services)
-DASHBOARD_ORDER=SAB,GET,HYD,TRA,QBI,DEL,SON,RAD,LID,WHI,PRO,SEE,BAZ,JEL,EMB,PLX,TAU,MNT
+DASHBOARD_ORDER=SAB,GET,HYD,TRA,QBI,DEL,PRO,JAC,SON,RAD,LID,WHI,SEE,BAZ,TAU,MNT,JEL,PLX,EMB
 
 # Media servers first
-DASHBOARD_ORDER=JEL,EMB,PLX,TAU,MNT,SON,RAD,LID,WHI,PRO,SEE,BAZ,SAB,GET,HYD,TRA,QBI,DEL
+DASHBOARD_ORDER=JEL,PLX,EMB,TAU,MNT,SON,RAD,LID,WHI,PRO,JAC,SEE,BAZ,SAB,GET,HYD,TRA,QBI,DEL
 
 # Downloads first
-DASHBOARD_ORDER=SAB,GET,HYD,TRA,QBI,DEL,SON,RAD,LID,WHI,PRO,SEE,BAZ,JEL,EMB,PLX,TAU,MNT
+DASHBOARD_ORDER=SAB,GET,HYD,TRA,QBI,DEL,SON,RAD,LID,WHI,PRO,JAC,SEE,BAZ,TAU,MNT,JEL,PLX,EMB
 
 # Minimal setup (just media and content)
-DASHBOARD_ORDER=JEL,EMB,PLX,TAU,MNT,SON,RAD
+DASHBOARD_ORDER=JEL,PLX,EMB,TAU,MNT,SON,RAD
 ```
 
 ---
 
-## Template Selection Guide
+## Quick Start Guide
 
-Choose the right template based on your deployment scenario:
+### Step 1: Choose Your Template
+| Use Case | Template | Auth | SSL |
+|----------|----------|------|-----|
+| Home lab / Private network | `yahlp-private-basic.xml` | Basic | HTTP |
+| External access / Simple auth | `yahlp-public-basic.xml` | Basic | HTTPS |
+| External access / Google | `yahlp-public-google.xml` | Google OAuth | HTTPS |
+| Enterprise / Microsoft | `yahlp-public-entra.xml` | Entra ID | HTTPS |
+| All options visible | `yahlp.xml` (master) | Configurable | Configurable |
 
-### Deployment Mode
-1. **Private Mode** - For internal/home network access
-   - Use `yahlp-private-basic.xml`
-   - HTTP only (no certificates needed)
-   - Basic authentication
+### Step 2: Deploy in Unraid
+1. Go to `Docker` → `Add Container`
+2. Click `Select a template`
+3. Paste the template URL or upload the file
+4. Configure the required settings (see template section above)
+5. Click `Apply`
 
-2. **Public Mode** - For external internet access
-   - Use `yahlp-public-*.xml` (choose auth method)
-   - HTTPS with Let's Encrypt certificates
-   - Choose authentication method: Basic, Google OAuth, or Entra ID
+### Step 3: Configure Services
+Once running, configure your backend services:
+- Enable services you want to use
+- Verify service URLs match your network setup
+- Set authentication credentials for each service
 
-### Authentication Methods
-
-#### `yahlp-public-basic.xml`
-- **Best for:** External access with simple username/password
-- **Security:** Basic Auth (good for home networks)
-- **SSL:** Yes (Let's Encrypt HTTPS)
-- **Setup difficulty:** Easy
-
-#### `yahlp-public-google.xml`
-- **Best for:** External access with Google account authentication
-- **Security:** OAuth2 (more secure than basic auth)
-- **SSL:** Yes (Let's Encrypt HTTPS)
-- **Setup difficulty:** Medium (requires Google Cloud setup)
-
-#### `yahlp-public-entra.xml`
-- **Best for:** Enterprise networks and Microsoft account users
-- **Security:** OAuth2 with Azure AD (enterprise-grade)
-- **SSL:** Yes (Let's Encrypt HTTPS)
-- **Setup difficulty:** Medium-Hard (requires Azure AD setup)
-
-#### `yahlp-private-basic.xml`
-- **Best for:** Internal-only deployments (home labs, local networks)
-- **Security:** Basic Auth only
-- **SSL:** No (HTTP only)
-- **Setup difficulty:** Easy
+### Step 4: Verify
+- Access the dashboard via the configured URL
+- Verify all enabled services are responding
+- Check logs if services don't appear
 
 ---
 
-## Quick Start
+## Configuration Details
 
-### For Private Mode (Basic Auth):
-1. Download `homelabportal-private-basic.xml`
-2. In Unraid, go to `Docker` → `Add Container`
-3. Click `Select a template`
-4. Paste the template content or load from file
-5. Configure:
-   - `IP`: Your container IP (e.g., `192.168.x.x`)
-   - `BASIC_AUTH_CREDENTIALS`: `user:password`
-   - Enable the services you want to use
-   - Set backend service URLs (default values provided)
-6. Click `Apply`
-
-### For Public Mode (Any Auth Type):
-1. Download the appropriate template for your auth method
-2. Ensure you have:
-   - A domain name (DNS pointing to your Unraid server)
-   - Port forwarding configured (80 → 80, 443 → 443)
-   - Appropriate OAuth credentials (if using OAuth)
-3. In Unraid, load the template and configure:
-   - `DOMAIN`: Your domain
-   - `EMAIL`: Your email for Let's Encrypt
-   - Authentication credentials for your chosen auth method
-   - Enable services and set backend URLs
-4. Click `Apply`
-5. Wait for Let's Encrypt certificate generation (check logs)
-
----
-
-## Service Configuration
-
-All templates come with service URL placeholders that you must configure:
-- `YOUR_BACKEND_HOST` - Replace with your backend service host (e.g., `192.168.x.x` or internal hostname)
-- Standard ports for each service are pre-configured
-- Update all service URLs to match your network setup
-
-**Example configuration:**
-If your services are running on `192.168.x.x`:
-- `SABnzbd URL`: `http://192.168.x.x:8080/sabnzbd`
-- `NZBGet URL`: `http://192.168.x.x:6789/nzbget`
-- `Radarr URL`: `http://192.168.x.x:7878`
-- etc.
-
-Or use hostnames if you have DNS configured:
-- `SABnzbd URL`: `http://sabnzbd.local:8080/sabnzbd`
-- `NZBGet URL`: `http://nzbget.local:6789/nzbget`
-- etc.
-
-### Supported Services (18 total):
-
-**Downloads/USENET:**
-- SABnzbd (SAB)
-- NZBGet (GET)
-- NZBHydra (HYD)
-
-**Torrents:**
-- Deluge (DEL)
-- Transmission (TRA)
-- qBittorrent (QBI)
-
-**Content Management:**
-- Radarr (RAD) - Movies
-- Sonarr (SON) - TV
-- Lidarr (LID) - Music
-- Whisparr (WHI) - Adult
-
-**Search/Requests:**
-- Prowlarr (PRO) - Indexer Manager
-- Seerr (SEE) - Request Manager
-- Bazarr (BAZ) - Subtitles
-
-**Media Streaming:**
-- Emby (EMB)
-- Plex (PLX)
-- Jellyfin (JEL)
-- Tautulli (TAU) - Analytics
-- Maintainerr (MNT) ⭐ NEW - Media maintenance
-
----
-
-## Optional Features
-
-### Subdomain Routing (Public Mode Only)
-For better organization, you can route media services to dedicated subdomains:
-- `Emby Subdomain`: Set to `emby.yourdomain.com` (requires DNS and HTTPS)
-- `Plex Subdomain`: Set to `plex.yourdomain.com` (requires DNS and HTTPS)
-
-These services will then be accessible via their subdomains with the same authentication as the main dashboard.
+### Environment Variables
+All templates use environment variables for configuration. Variables are set through:
+1. **Unraid Docker UI** - Through the template form fields
+2. **Direct env vars** - When deploying via command line
+3. **Configuration file** - Via mounted `yahlp.json5` configuration
 
 ### Dashboard Customization
-All templates support:
-- **STYLE**: Dashboard appearance (classic, modern, sleek, minimal)
+All templates support customization through these variables:
 - **DASHBOARD_NAME**: Custom title for your dashboard
-- **DASHBOARD_ICON**: Path to custom icon (default: `/icons/yahlp.png`)
-- **DASHBOARD_LANDING**: Default page when accessing dashboard (e.g., `radarr`, `sonarr`)
-- **DASHBOARD_THEME**: Dark (default) or light
-- **DASHBOARD_ORDER**: Service category display order
+- **DASHBOARD_STYLE**: Visual layout (classic, modern, sleek, minimal)
+- **DASHBOARD_COLOR**: Accent color in hex format (e.g., `#00A99D`)
+- **DASHBOARD_LANDING**: Default page on load (e.g., `sonarr`, `radarr/upcoming`)
+- **DASHBOARD_ORDER**: Service display order using 3-letter codes
+
+### Supported Deployments
+
+**All 19 Services Supported:**
+
+**Downloads/USENET:**
+- SABnzbd
+- NZBGet
+- NZBHydra
+
+**Torrents:**
+- Deluge
+- Transmission
+- qBittorrent
+
+**Content Management:**
+- Radarr (Movies)
+- Sonarr (TV)
+- Lidarr (Music)
+- Whisparr (Adult Content)
+
+**Search/Requests:**
+- Prowlarr (Indexer Manager)
+- Jackett (Indexer Aggregator)
+- Seerr (Request Manager)
+- Bazarr (Subtitle Manager)
+
+**Media Streaming:**
+- Emby
+- Plex
+- Jellyfin
+- Tautulli (Analytics)
+- Maintainerr (Media Maintenance)
 
 ---
 
 ## Troubleshooting
 
 ### Let's Encrypt Certificate Issues (Public Mode)
-- Ensure ports 80 and 443 are forwarded correctly
-- Check that your domain DNS is pointing to your IP
-- Check container logs for certbot errors
+- Ensure ports 80 and 443 are port-forwarded correctly
+- Verify your domain DNS is pointing to your server IP
+- Check container logs for certbot/certificate errors
+- Ensure your domain is accessible from the internet
+- For test mode, remove the `TEST_MODE` variable or set to `false`
 
 ### Authentication Not Working
-- Verify authentication credentials are set correctly
-- For OAuth, ensure redirect URIs match exactly
-- Check that the OAuth application is properly configured in your provider's console
+- Verify authentication credentials are set correctly in template
+- For OAuth (Google/Entra):
+  - Ensure redirect URIs match exactly in provider console
+  - Verify Client ID and Secret are correct
+  - Check that OAuth application is properly configured
+- For Basic Auth:
+  - Use format: `user:pass` or `user1:pass1|user2:pass2`
 
 ### Services Not Responding
 - Verify backend service URLs are correct for your network
 - Ensure services are running and accessible from the container
-- Check firewall rules if services are on a different subnet
+- Check firewall rules between container and services
+- Verify all required services have proper URLs configured
+
+### Dashboard Not Loading
+- Check container logs for startup errors
+- Verify dashboard configuration variables are set
+- Clear browser cache and try again
+- For custom dashboard colors, ensure valid hex format
 
 ### Performance Issues
-- In private mode, consider using the lighter dashboard styles (sleek, minimal)
+- Consider using lighter dashboard styles (sleek, minimal)
 - Disable unused services to reduce proxy overhead
-- Check container resource limits in Unraid
+- Check Unraid container resource limits
+- Monitor CPU/Memory usage in Unraid dashboard
 
 ---
 
-## Security Notes
+## Security Considerations
 
 ### Private Mode
-- Basic Auth is suitable for trusted networks only
-- Consider using VPN for external access instead of exposing directly
-- No encryption by default (HTTP only)
+- Basic Auth is suitable only for trusted networks
+- Consider VPN for external access instead of direct exposure
+- HTTP only (no encryption by default)
+- Suitable for: Home labs, internal networks
 
-### Public Mode with Basic Auth
-- Basic Auth transmits credentials in Base64 (visible if HTTPS is compromised)
-- Consider using OAuth2 for better security
-- Keep your domain HTTPS certificate updated
+### Public Mode - Basic Auth
+- Basic Auth sends credentials in Base64 (not secure if HTTPS fails)
+- Good for: Simple internal deployments exposed externally
+- Recommendation: Use OAuth2 for better security
 
-### Public Mode with OAuth
+### Public Mode - OAuth2 (Google/Entra)
 - OAuth2 is more secure than Basic Auth
-- Choose OAuth provider based on your trust and availability
-- Ensure OAuth application secrets are kept confidential
-- Use strong, unique crypto passphrases (Entra ID)
+- Credentials never transmitted to YAHLP
+- Choose OAuth provider based on your trust model
+- Enterprise choice: Entra ID for Microsoft 365 organizations
+- Consumer choice: Google OAuth for individual users
+
+### Best Practices
+- Enable HTTPS (provided in all public templates via Let's Encrypt)
+- Use strong, unique credentials
+- Keep OAuth secrets confidential
+- Regularly review service access logs
+- Use subdomain routing for critical services when possible
+- Consider using a Web Application Firewall (WAF) for public deployments
 
 ---
 
 ## Maintenance
 
-### Updating Templates
-Templates are stored in this repository. To get the latest:
-1. Clone this repository
-2. Download the latest template files
-3. Re-deploy the container with new template
+### Updating to Latest Templates
+1. Download the latest template files from this repository
+2. Update the container with the new template
+3. Verify configuration is preserved
+4. Check logs for any errors
 
 ### Let's Encrypt Certificate Renewal (Public Mode)
 - Automatic renewal happens 30 days before expiration
 - No manual intervention needed
-- Logs are available in `/var/log/apache2` volume
+- Renewal logs available in container logs
+- Keep port 80 accessible for renewal validation
+
+### Monitoring
+- Check container logs regularly: `docker logs yahlp`
+- Monitor certificate renewal (happens automatically)
+- Verify service health via dashboard
+- Check access logs in `/var/log/apache2` volume mount
 
 ---
 
-## Support
+## Support & Documentation
 
-For issues, feature requests, or questions, visit the main repository:
-- **GitHub**: https://github.com/auskento/yahlp
-- **Documentation**: https://github.com/auskento/yahlp
+For more information, visit the main YAHLP repository:
+- **GitHub**: https://github.com/auskento/YAHLP
+- **Documentation**: https://github.com/auskento/YAHLP/tree/main/docs
+- **Issues**: https://github.com/auskento/YAHLP/issues
+
+### Documentation Files
+- **Installation**: Setup instructions for different environments
+- **Configuration**: Deep dive into all configuration options
+- **Authentication**: Detailed OAuth2 setup guides
+- **Architecture**: System design and component overview
+- **Security**: Security best practices and hardening
 
 ---
 
 ## License
 
-These templates are part of the YAHLP (Yet Another HomeLab Portal) project and follow the same license.
+These templates are part of the YAHLP (Yet Another HomeLab Portal) project. See the main repository for license details.

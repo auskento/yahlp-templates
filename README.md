@@ -1,5 +1,7 @@
 # YAHLP - Yet Another HomeLab Portal - Unraid Templates
 
+![YAHLP Logo](https://raw.githubusercontent.com/auskento/YAHLP/main/yahlp.png)
+
 Official Unraid container templates for **YAHLP** (Yet Another HomeLab Portal), a comprehensive reverse proxy and unified media server dashboard.
 
 These templates are part of the [Unraid Community Applications](https://unraid.net/community/apps) ecosystem.
@@ -68,12 +70,12 @@ Choose the template that matches your deployment scenario:
 
 **Optional Configuration:**
 - Dashboard settings (name, style, color, landing page, service order)
-- `TEST_MODE`: Set to `false` when ready for production certificates
+- `DASHBOARD_TEST`: Set to `false` when ready for production certificates
 
 **Setup Requirements:**
 1. Add DNS A record pointing your domain to your server IP
 2. Ensure ports 80 and 443 are port-forwarded from your router
-3. Set `TEST_MODE=false` once ready for production (avoids Let's Encrypt rate limiting)
+3. Set `DASHBOARD_TEST=false` once ready for production (avoids Let's Encrypt rate limiting)
 
 ---
 
@@ -105,7 +107,7 @@ Choose the template that matches your deployment scenario:
 4. Copy Client ID and Secret to the template
 5. Add DNS A record for your domain
 6. Ensure ports 80 and 443 are port-forwarded
-7. Set `TEST_MODE=false` when ready for production
+7. Set `DASHBOARD_TEST=false` when ready for production
 
 ---
 
@@ -129,7 +131,7 @@ Choose the template that matches your deployment scenario:
 - `ENTRA_CLIENT_SECRET`: Azure AD application secret
 - `ENTRA_TENANT_ID`: Your Azure Tenant ID
 - `ENTRA_REDIRECT_URI`: OAuth callback URL (e.g., `https://yourdomain.com/auth/oauth2/callback`)
-- `ENTRA_METADATA_URL`: OpenID configuration URL (format: `https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration`)
+- `ENTRA_PROVIDER_METADATA_URL`: OpenID configuration URL (format: `https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0/.well-known/openid-configuration`)
 - `ENTRA_CRYPTO_PASSPHRASE`: Session encryption key (auto-generated if left blank)
 - **Network:** Port forwarding for ports 80 and 443 to your Unraid server
 
@@ -144,7 +146,7 @@ Choose the template that matches your deployment scenario:
 8. Copy credentials to the template
 9. Add DNS A record for your domain
 10. Ensure ports 80 and 443 are port-forwarded
-11. Set `TEST_MODE=false` when ready for production
+11. Set `DASHBOARD_TEST=false` when ready for production
 
 ---
 

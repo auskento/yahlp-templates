@@ -55,75 +55,56 @@ Setup Requirements:
   <!-- USENET SERVICES -->
   <Config Name="Enable SABnzbd" Target="SABNZBD_ENABLED" Default="false|true" Mode="" Description="SABnzbd - Usenet Client (Config - Special - url_base() to /sabnzbd)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="SABnzbd URL" Target="SABNZBD_URL" Default="http://sabnzbd:8080" Mode="" Description="Your local URL" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="SABnzbd API Key" Target="SABNZBD_API_KEY" Default="" Mode="" Description="API key from SABnzbd settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Enable NZBGet" Target="NZBGET_ENABLED" Default="false|true" Mode="" Description="NZBGet - Usenet Client (Set User and Pass below to bypass NZBGet auth" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="NZBGet URL" Target="NZBGET_URL" Default="http://nzbget:6789" Mode="" Description="Your local URL" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="NZBGet Username" Target="NZBGET_USER" Default="" Mode="" Description="NZBGet username (if required)" Type="Variable" Display="always" Required="false" Mask="true" />
-  <Config Name="NZBGet Password" Target="NZBGET_PASS" Default="" Mode="" Description="NZBGet password (if required)" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Enable NZBHydra" Target="NZBHYDRA_ENABLED" Default="false|true" Mode="" Description="NZBHydra - Usenet Meta Indexer (Config - Main - URLBase to /nzbhydra)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="NZBHydra URL" Target="NZBHYDRA_URL" Default="http://nzbhydra:5076" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="NZBHydra API Key" Target="NZBHYDRA_API_KEY" Default="" Mode="" Description="API key from NZBHydra settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <!-- TORRENTS SERVICES -->
   <Config Name="Enable Transmission" Target="TRANSMISSION_ENABLED" Default="false|true" Mode="" Description="Transmission - Torrent Client" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Transmission URL" Target="TRANSMISSION_URL" Default="http://transmission:9091" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Enable qBittorrent" Target="QBITTORRENT_ENABLED" Default="false|true" Mode="" Description="qBittorrent - Torrent Client" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="qBittorrent URL" Target="QBITTORRENT_URL" Default="http://qbittorrent:8080" Mode="" Description="Your local url (Check port for conflict, default to same port as other apps)" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="qBittorrent API Key" Target="QBITTORRENT_API_KEY" Default="" Mode="" Description="API key from qBittorrent settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Enable Deluge" Target="DELUGE_ENABLED" Default="false|true" Mode="" Description="Deluge - Torrent Client" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Deluge URL" Target="DELUGE_URL" Default="http://deluge:8112" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Deluge Password" Target="DELUGE_PASSWORD" Default="" Mode="" Description="Password for Deluge web UI login" Type="Variable" Display="always" Required="false" Mask="true" />
   <!-- CONTENT SERVICES -->
   <Config Name="Enable Sonarr" Target="SONARR_ENABLED" Default="false|true" Mode="" Description="Sonarr - TV Show Automation (Settings - General - URL Base to /sonarr)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Sonarr URL" Target="SONARR_URL" Default="http://sonarr:8989" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Sonarr API Key" Target="SONARR_API_KEY" Default="" Mode="" Description="API key from Sonarr settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Sonarr Landing" Target="SONARR_LANDING" Default="sonarr" Mode="" Description="Landing page (e.g., sonarr, sonarr/calendar)" Type="Variable" Display="advanced" Required="false" Mask="false" />
   <Config Name="Enable Radarr" Target="RADARR_ENABLED" Default="false|true" Mode="" Description="Radarr - Movie Automation ((Settings - General - URL Base to /radarr)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Radarr URL" Target="RADARR_URL" Default="http://radarr:7878" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Radarr API Key" Target="RADARR_API_KEY" Default="" Mode="" Description="API key from Radarr settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Radarr Landing" Target="RADARR_LANDING" Default="radarr" Mode="" Description="Landing page (e.g., radarr, radarr/calendar)" Type="Variable" Display="advanced" Required="false" Mask="false" />
   <Config Name="Enable Whisparr" Target="WHISPARR_ENABLED" Default="false|true" Mode="" Description="Whisparr - Adult Content Automation (Settings - General - URL Base to /whisparr)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Whisparr URL" Target="WHISPARR_URL" Default="http://whisparr:6969" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Whisparr API Key" Target="WHISPARR_API_KEY" Default="" Mode="" Description="API key from Whisparr settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Whisparr Landing" Target="WHISPARR_LANDING" Default="whisparr" Mode="" Description="Landing page" Type="Variable" Display="advanced" Required="false" Mask="false" />
   <Config Name="Enable Lidarr" Target="LIDARR_ENABLED" Default="false|true" Mode="" Description="Lidarr - Music Automation (Settings - General - URL Base to to /lidarr)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Lidarr URL" Target="LIDARR_URL" Default="http://lidarr:8686" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Lidarr API Key" Target="LIDARR_API_KEY" Default="" Mode="" Description="API key from Lidarr settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Lidarr Landing" Target="LIDARR_LANDING" Default="" Mode="" Description="Landing page" Type="Variable" Display="advanced" Required="false" Mask="false" />
   <!-- SEARCH SERVICES -->
   <Config Name="Enable Prowlarr" Target="PROWLARR_ENABLED" Default="false|true" Mode="" Description="Prowlarr - Indexer Manager (Settings - General - URL Base to /prowlarr)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Prowlarr URL" Target="PROWLARR_URL" Default="http://prowlarr:9696" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Prowlarr API Key" Target="PROWLARR_API_KEY" Default="" Mode="" Description="API key from Prowlarr settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Enable Jackett" Target="JACKETT_ENABLED" Default="false|true" Mode="" Description="Jackett - Indexer Aggregator (Config - Admin - url_base() to /jackett)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Jackett URL" Target="JACKETT_URL" Default="http://jackett:9117" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Jackett API Key" Target="JACKETT_API_KEY" Default="" Mode="" Description="API key from Jackett settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Enable Seerr" Target="SEERR_ENABLED" Default="false|true" Mode="" Description="Seerr - Request Manager (In Public mode, Seer uses a subdomain, make sure you have a DNS record configured)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Seerr URL" Target="SEERR_URL" Default="http://seerr:5055" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Seerr API Key" Target="SEERR_API_KEY" Default="" Mode="" Description="API key from Seerr settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Seerr Domain" Target="SEERR_DOMAIN" Default="seerr.yourdomain.com" Mode="" Description="Subdomain for Seerr" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Seerr Redirect URI" Target="SEERR_REDIRECT_URI" Default="https://seerr.yourdomain.com/oauth2callback" Mode="" Description="OAuth redirect URI - configure in Entra or Google" Type="Variable" Display="advanced" Required="false" Mask="false" />
   <Config Name="Enable Bazarr" Target="BAZARR_ENABLED" Default="false|true" Mode="" Description="Bazarr - Subtitle Manager (Settings - General - Base URL to /bazarr)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Bazarr URL" Target="BAZARR_URL" Default="http://bazarr:6767" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Bazarr API Key" Target="BAZARR_API_KEY" Default="" Mode="" Description="API key from Bazarr settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <!-- MEDIA SERVICES -->
   <Config Name="Enable Jellyfin" Target="JELLYFIN_ENABLED" Default="false|true" Mode="" Description="Jellyfin - Media Server (Settings -Admin Dash - Networking - Base URL /jellyfin)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Jellyfin URL" Target="JELLYFIN_URL" Default="http://jellyfin:8096" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Jellyfin API Key" Target="JELLYFIN_API_KEY" Default="" Mode="" Description="API key from Jellyfin settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Enable Emby" Target="EMBY_ENABLED" Default="false|true" Mode="" Description="Emby - Media Server (In public mode,Emby uses a subdomain, make sure you have a DNS record configured)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Emby URL" Target="EMBY_URL" Default="http://emby:8096" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Emby API Key" Target="EMBY_API_KEY" Default="" Mode="" Description="API key from Emby settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Emby Domain" Target="EMBY_DOMAIN" Default="emby.yourdomain.com" Mode="" Description="Subdomain for Emby" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Emby Redirect URI" Target="EMBY_REDIRECT_URI" Default="https://emby.yourdomain.com/oauth2callback" Mode="" Description="OAuth redirect URI - configure in Entra or Google" Type="Variable" Display="advanced" Required="false" Mask="false" />
   <Config Name="Enable Plex" Target="PLEX_ENABLED" Default="false|true" Mode="" Description="Plex - Media Server (in public mode, Plex uses a subdomain, make sure you have a DNS record configured)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Plex URL" Target="PLEX_URL" Default="http://plex:32400" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Plex API Key" Target="PLEX_API_KEY" Default="" Mode="" Description="API key from Plex settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Plex Domain" Target="PLEX_DOMAIN" Default="plex.yourdomain.com" Mode="" Description="Subdomain for Plex" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Plex Redirect URI" Target="PLEX_REDIRECT_URI" Default="https://plex.yourdomain.com/oauth2callback" Mode="" Description="OAuth redirect URI" Type="Variable" Display="advanced" Required="false" Mask="false" />
   <Config Name="Enable Tautulli" Target="TAUTULLI_ENABLED" Default="false|true" Mode="" Description="Tautulli - Plex Analytics (Settings - Show Advanced - Web Interface - Enable Proxy, Set Public Domain to https://yahlp.yourdomain.com/tautulli and HTTP root to /tautulli)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Tautulli URL" Target="TAUTULLI_URL" Default="http://tautulli:8181/tautulli" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Tautulli API Key" Target="TAUTULLI_API_KEY" Default="" Mode="" Description="API key from Tautulli settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Enable Maintainerr" Target="MAINTAINERR_ENABLED" Default="false|true" Mode="" Description="Maintainerr - Media Server Maintenance (Enable BASE_URL environment variable on its docker and set to /maintainerr)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Maintainerr URL" Target="MAINTAINERR_URL" Default="http://maintainerr:6246" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Maintainerr API Key" Target="MAINTAINERR_API_KEY" Default="" Mode="" Description="API key from Maintainerr settings" Type="Variable" Display="always" Required="false" Mask="true" />
 
   <!-- FILE PERMISSIONS -->
   <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID for file permissions (99 = nobody)" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>

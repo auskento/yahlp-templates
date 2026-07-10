@@ -1,38 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Container version="2">
-  <Name>YAHLP</Name>
+  <Name>YAHLP-Public-Entra</Name>
   <Repository>ghcr.io/auskento/yahlp</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
-  <MyIP />
-  <Shell>bash</Shell>
+  <MyIP/>
+  <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://github.com/auskento/YAHLP</Support>
   <Project>https://github.com/auskento/YAHLP</Project>
   <Category>Network:Web</Category>
-  <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp.xml</TemplateURL>
+  <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp-public-entra.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/auskento/YAHLP/main/html/icons/yahlp.png</Icon>
   <WebUI>https://[IP]:[PORT:443]/</WebUI>
   <CloudSync>false</CloudSync>
-  <Description>YAHLP - Comprehensive master template with all 19 services and complete configuration options. For simpler deployments, use yahlp-private-none, yahlp-public-basic, yahlp-public-google, or yahlp-public-entra templates.</Description>
-  <Overview>YAHLP - Yet Another HomeLab Portal - Complete Master Template
+  <Description>YAHLP - Public Mode with Microsoft Entra ID. HTTPS via Let's Encrypt + Entra authentication for enterprise deployments.</Description>
+  <Overview>YAHLP - Yet Another HomeLab Portal - Public Mode with Microsoft Entra ID
 
-Unified dashboard and reverse proxy for 19 homelab services: USENET (SABnzbd, NZBget, NZBHydra), TORRENTS (Transmission, qBittorrent, Deluge), SEARCH (Prowlarr, Jackett, Sonarr, Radarr, Lidarr, Whisparr), INFRA (Seerr, Bazarr, Tautulli, Maintainerr), MEDIA (Jellyfin, Plex, Emby).
+Configured for public internet deployment with:
+- HTTPS with automatic Let's Encrypt certificates
+- Microsoft Entra ID (Azure AD) OAuth 2.0 authentication
+- Requires domain name and email address
+- Requires Entra ID credentials from Azure Portal
+- Ports 80 and 443 must be port-forwarded
 
-Features:
-- Automatic HTTPS via Let's Encrypt (public mode) or HTTP (private mode)
-- 5 responsive layouts: Classic, Modern, Sleek, Minimal, Mobile
-- Flexible authentication: Basic Auth, Entra ID, Google OAuth, or none
-- Real-time service health monitoring
-- Customizable service ordering and theming
+Setup Requirements:
+1. Create Azure App Registration in Entra ID
+2. Configure OAuth 2.0 with Redirect URI: https://your-domain.com/auth/oauth2/callback
+3. Generate Client Secret
+4. Add DNS A record pointing your domain to your server IP
+5. Ensure ports 80 and 443 are port-forwarded from router
+6. Set TEST_MODE=false once ready for production to avoid Let's Encrypt rate limiting</Overview>
 
-For simpler deployments, use specialized templates:
-- yahlp-private-none.xml (Private mode, HTTP, no Auth)
-- yahlp-public-basic.xml (Public mode, HTTPS, Basic Auth)
-- yahlp-public-google.xml (Public mode, HTTPS, Google OAuth)
-- yahlp-public-entra.xml (Public mode, HTTPS, Entra ID OAuth)
 
-Documentation: https://github.com/auskento/YAHLP/docs</Overview>
   <!-- PORTS -->
   <Config Name="HTTP" Target="80" Default="80" Mode="tcp" Description="HTTP" Type="Port" Display="always" Required="true" Mask="false">80</Config>
   <Config Name="HTTPS" Target="443" Default="443" Mode="tcp" Description="HTTPS" Type="Port" Display="always" Required="true" Mask="false">443</Config>
@@ -41,7 +41,6 @@ Documentation: https://github.com/auskento/YAHLP/docs</Overview>
   <Config Name="Access Mode" Target="ACCESS_MODE" Default="public|private" Mode="" Description="Choose: public (HTTPS with Let's Encrypt) or private (HTTP on internal network)" Type="Variable" Display="always" Required="true" Mask="false" />
   <Config Name="Domain (Public)" Target="DOMAIN" Default="" Mode="" Description="Your domain for public mode (e.g., yahlp.yourdomain.com)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Email (Public)" Target="EMAIL" Default="" Mode="" Description="Email for Let's Encrypt notifications (public mode only)" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Internal IP (Private)" Target="IP" Default="" Mode="" Description="Server IP for private mode (e.g., 192.168.1.100)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Timezone" Target="TZ" Default="" Mode="" Description="Container timezone (e.g., Australia/Sydney, UTC, US/Eastern)" Type="Variable" Display="advanced" Required="false" Mask="false" />
   <!-- DASHBOARD SETTINGS -->
   <Config Name="Dashboard Name" Target="DASHBOARD_NAME" Default="YAHLP" Mode="" Description="Displayed in browser title and dashboard" Type="Variable" Display="always" Required="false" Mask="false" />
@@ -51,17 +50,13 @@ Documentation: https://github.com/auskento/YAHLP/docs</Overview>
   <Config Name="Service Display Order" Target="DASHBOARD_ORDER" Default="SAB,GET,HYD,TRA,QBI,DEL,PRO,JAC,SON,RAD,LID,WHI,SEE,BAZ,TAU,MNT,JEL,PLX,EMB" Mode="" Description="Comma-separated service codes for display order" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Sites Display Order" Target="DASHBOARD_SITES" Default="" Mode="" Description="Comma-separated list for internal websites display order" Type="Variable" Display="always" Required="false" Mask="false" />
     <!-- AUTHENTICATION -->
-  <Config Name="Authentication Type" Target="AUTHTYPE" Default="none|basic|google|entra" Mode="" Description="Choose: none, basic, google, entra" Type="Variable" Display="always" Required="true" Mask="false" />
-  <Config Name="Basic Auth Credentials" Target="BASIC_AUTH_CREDENTIALS" Default="" Mode="" Description="Format: user:pass or user1:pass1|user2:pass2" Type="Variable" Display="always" Required="false" Mask="true" />
+  <Config Name="Authentication Type" Target="AUTHTYPE" Default="entra" Mode="" Description="Choose: none, basic, google, entra" Type="Variable" Display="always" Required="true" Mask="false" />
   <Config Name="Entra Client ID" Target="ENTRA_CLIENT_ID" Default="" Mode="" Description="From Azure Portal" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Entra Client Secret" Target="ENTRA_CLIENT_SECRET" Default="" Mode="" Description="From Azure Portal" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Entra Tenant ID" Target="ENTRA_TENANT_ID" Default="" Mode="" Description="Your Azure Tenant ID" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Entra Redirect URI" Target="ENTRA_REDIRECT_URI" Default="" Mode="" Description="OAuth callback URL (e.g., https://yourdomain.com/auth/oauth2/callback)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Entra Crypto Passphrase" Target="ENTRA_CRYPTO_PASSPHRASE" Default="" Mode="" Description="Encryption passphrase for Entra tokens" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Entra Metadata URL" Target="ENTRA_PROVIDER_METADATA_URL" Default="" Mode="" Description="OpenID metadata URL for Entra" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Google Client ID" Target="GOOGLE_CLIENT_ID" Default="" Mode="" Description="From Google Cloud Console" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Google Client Secret" Target="GOOGLE_CLIENT_SECRET" Default="" Mode="" Description="From Google Cloud Console" Type="Variable" Display="always" Required="false" Mask="true" />
-  <Config Name="Google Redirect URI" Target="GOOGLE_REDIRECT_URI" Default="" Mode="" Description="OAuth callback URL (e.g., https://yourdomain.com/auth/oauth2/callback)" Type="Variable" Display="always" Required="false" Mask="false" />
   <!-- USENET SERVICES -->
   <Config Name="Enable SABnzbd" Target="SABNZBD_ENABLED" Default="false|true" Mode="" Description="SABnzbd - Usenet Client (Config - Special - url_base() to /sabnzbd)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="SABnzbd URL" Target="SABNZBD_URL" Default="http://sabnzbd:8080" Mode="" Description="Your local URL" Type="Variable" Display="always" Required="false" Mask="false" />
@@ -158,6 +153,6 @@ Documentation: https://github.com/auskento/YAHLP/docs</Overview>
   <Config Name="SSL_CIPHERS" Target="SSL_CIPHERS" Default="HIGH:!aNULL:!MD5" Mode="" Description="SSL cipher suite (Apache format)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="APACHE_LOG_LEVEL" Target="APACHE_LOG_LEVEL" Default="warn" Mode="" Description="Apache logging level: debug, info, notice, warn, crit" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <!-- STORAGE PATHS -->
-  <Config Name="Configuration" Target="/etc/yahlp" Default="/mnt/user/appdata/yahlp" Mode="rw" Description="Configuration folder - store the yahlp and sites JSON5 files here - ENV Variables override config settings, remove the variable settings from the form.  Custom templates in the templates folder" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/yahlp</Config>
+  <Config Name="Configuration" Target="/etc/yahlp" Default="/mnt/user/appdata/yahlp" Mode="rw" Description="Configuration folder - store the yahlp and sites JSON5 files here - ENV Variables override config settings, remove the variable settings from the form.  Custom templates in the templates folder" Type="Path" Display="always" Required="true" Mask="false"/>/mnt/user/appdata/yahlp</Config>
 </Container>
 

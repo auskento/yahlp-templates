@@ -254,6 +254,44 @@ All templates support customization through these variables:
 - **DASHBOARD_LANDING**: Default page on load (e.g., `sonarr`, `radarr/upcoming`)
 - **DASHBOARD_ORDER**: Service display order using 3-letter codes
 
+### Custom Layout Templates
+
+When you mount a config folder to `/etc/yahlp` in Docker:
+
+1. **Automatic Setup** — A `templates` folder is automatically created in your config directory
+2. **README Guide** — The `templates/README.md` file is copied to provide instructions and links to custom template examples
+3. **Custom Templates** — Place your custom HTML layout templates in `config/templates/`
+4. **Built-in Templates** — Built-in templates remain in the container and are never modified
+
+**To use custom templates:**
+1. Mount a config folder: `-v ./config:/etc/yahlp`
+2. On first start, YAHLP creates `config/templates/` automatically
+3. Add your custom `.html` layout files to `config/templates/`
+4. Set `DASHBOARD_STYLE` to your custom template name (without `.html` extension)
+5. Restart the container
+
+**Example structure:**
+```
+config/                       # Single mounted folder (required for all deployments)
+├── yahlp.json5              # Configuration file
+├── sites.json5              # Custom sites configuration (optional)
+├── certs/                   # SSL certificates (public mode only, auto-created)
+│   └── live/                # Let's Encrypt certificates (auto-renewed)
+├── templates/               # Custom dashboard layouts (auto-created on first start)
+│   ├── README.md            # Instructions and links
+│   ├── my-custom-layout.html # Your custom template
+│   └── another-theme.html   # Another custom template
+└── logs/                    # Apache access/error logs (auto-created)
+    └── sites/               # Per-site logs
+```
+
+**Key points:**
+- The `templates/` folder is automatically created on first start
+- The `certs/` folder only appears in public mode (ACCESS_MODE=public)
+- The `logs/` folder is automatically created for Apache logging
+- All data is in one mounted folder for simplified management and backup
+- If `templates/` is empty or not present, only built-in templates are used
+
 ### Supported Deployments
 
 **All 19 Services Supported:**

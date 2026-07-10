@@ -13,7 +13,6 @@
   <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp-public-entra.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/auskento/YAHLP/main/html/icons/yahlp.png</Icon>
   <WebUI>https://[IP]:[PORT:443]/</WebUI>
-  <CloudSync>false</CloudSync>
   <Description>YAHLP - Public Mode with Microsoft Entra ID. HTTPS via Let's Encrypt + Entra authentication for enterprise deployments.</Description>
   <Overview>YAHLP - Yet Another HomeLab Portal - Public Mode with Microsoft Entra ID
 
@@ -148,10 +147,10 @@ Setup Requirements:
   <Config Name="Maintainerr URL" Target="MAINTAINERR_URL" Default="http://maintainerr:6246" Mode="" Description="Your local url" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Maintainerr API Key" Target="MAINTAINERR_API_KEY" Default="" Mode="" Description="API key from Maintainerr settings" Type="Variable" Display="always" Required="false" Mask="true" />
   <Config Name="Maintainerr Icon" Target="MAINTAINERR_ICON_URL" Default="" Mode="" Description="URL to download custom Maintainerr icon (leave blank for builtin)" Type="Variable" Display="always" Required="false" Mask="false" />
-  <!-- ADDITIONAL SETTINGS -->
-  <Config Name="SSL_PROTOCOLS" Target="SSL_PROTOCOLS" Default="all -SSLv2 -SSLv3 -TLSv1 -TLSv1.1" Mode="" Description="SSL/TLS protocols to enable (Apache mod_ssl format)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
-  <Config Name="SSL_CIPHERS" Target="SSL_CIPHERS" Default="HIGH:!aNULL:!MD5" Mode="" Description="SSL cipher suite (Apache format)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
-  <Config Name="APACHE_LOG_LEVEL" Target="APACHE_LOG_LEVEL" Default="warn" Mode="" Description="Apache logging level: debug, info, notice, warn, crit" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <!-- FILE PERMISSIONS -->
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID for file permissions (99 = nobody)" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID for file permissions (100 = users)" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
   <!-- STORAGE PATHS -->
   <Config Name="Configuration" Target="/etc/yahlp" Default="/mnt/user/appdata/yahlp" Mode="rw" Description="Configuration folder - store the yahlp and sites JSON5 files here - ENV Variables override config settings, remove the variable settings from the form.  Custom templates in the templates folder" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/yahlp</Config>
 </Container>

@@ -153,6 +153,6 @@ Setup Requirements:
   <Config Name="SSL_CIPHERS" Target="SSL_CIPHERS" Default="HIGH:!aNULL:!MD5" Mode="" Description="SSL cipher suite (Apache format)" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="APACHE_LOG_LEVEL" Target="APACHE_LOG_LEVEL" Default="warn" Mode="" Description="Apache logging level: debug, info, notice, warn, crit" Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <!-- STORAGE PATHS -->
-  <Config Name="Configuration" Target="/etc/yahlp" Default="/mnt/user/appdata/yahlp" Mode="rw" Description="Configuration folder - store the yahlp and sites JSON5 files here - ENV Variables override config settings, remove the variable settings from the form.  Custom templates in the templates folder" Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Configuration" Target="/etc/yahlp" Default="/mnt/user/appdata/yahlp" Mode="rw" Description="Configuration folder - store the yahlp and sites JSON5 files here - ENV Variables override config settings, remove the variable settings from the form.  Custom templates in the templates folder" Type="Path" Display="always" Required="true" Mask="false"/></Config>
 </Container>
 

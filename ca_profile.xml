@@ -16,14 +16,15 @@ This repository contains 4 pre-configured Unraid container templates for differe
 
 ## Key Features
 
-- **17 Integrated Services** - Radarr, Sonarr, Lidarr, Whisparr, Prowlarr, Seerr, Bazarr, SABnzbd, NZBGet, NZBHydra, Transmission, qBittorrent, Deluge, Jellyfin, Plex, Emby, Tautulli
+- **19 Integrated Services** - Radarr, Sonarr, Lidarr, Whisparr, Prowlarr, Jackett, Seerr, Bazarr, SABnzbd, NZBGet, NZBHydra, Transmission, qBittorrent, Deluge, Jellyfin, Plex, Emby, Tautulli, Maintainerr
 - **4 Dashboard Styles** - Classic, Modern, Sleek, Minimal (with mobile-responsive layout)
 - **Dark/Light Theme Toggle** - Persistent user preferences with theme persistence
 - **Minimal Defaults** - All services disabled by default; users enable only what they need
-- **Torrent/Usenet Links** - 16 pre-configured sites (torrent and usenet) with cached favicons
+- **Torrent/Usenet Links** - 17 pre-configured sites (torrent and usenet) with cached favicons
 - **Multiple Authentication Methods** - None, Basic Auth, Google OAuth2, Microsoft Entra ID
 - **Automatic HTTPS** - Let's Encrypt integration for public deployments
 - **Subdomain Routing** - Support for media service subdomains in public mode
+- **Additional vhost support - map additional vhost files to the configuration to be served by the reverse proxy, without adding to the menu
 
 ## Getting Started
 

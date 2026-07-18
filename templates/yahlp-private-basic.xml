@@ -13,7 +13,11 @@
   <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp-private-basic.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/auskento/YAHLP/main/html/icons/yahlp.png</Icon>
   <WebUI>http://[IP]:80/</WebUI>
+  <Screenshot>https://raw.githubusercontent.com/auskento/yahlp/main/screenshots/classic.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/auskento/yahlp/main/screenshots/sleek.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/auskento/yahlp/main/screenshots/neon.png</Screenshot>
   <Description>YAHLP - Private Mode (HTTP + Basic Auth). Simple setup for internal networks with username/password protection. No domain or certificates required.</Description>
+  <Requirements>This system is best run with its own dedicated IP on your network rather than port reallocation to the host </Requirements>
   <Overview>YAHLP - Yet Another HomeLab Portal - Private Mode Template
 
 Configured for private network deployment with:
@@ -22,16 +26,15 @@ Configured for private network deployment with:
 - Internal network access
 
 Perfect for private lab environments without public exposure.</Overview>
+  <Requires>This app runs best on a dedicated IP on your LAN - not forwarding other ports to host.
+Your own domain name with DNS control for Lets Encrypt certificate generation
+Settings here are saved to yahlp.json5 on first run and are then overrides - if they exist, they take precedence over the config file</Requires>
 
   <!-- PORTS -->
   <Config Name="HTTP" Target="80" Default="80" Mode="tcp" Description="HTTP" Type="Port" Display="always" Required="true" Mask="false">80</Config>
   <!-- DEPLOYMENT & ACCESS MODE -->
-  <Config Name="Let's Encrypt Test Mode" Target="DASHBOARD_TEST" Default="true|false" Mode="" Description="Let's Encrypt --dry-run mode (test without rate limits). WARNING: Certificates will NOT be issued. Set to false when ready for production." Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Access Mode" Target="ACCESS_MODE" Default="private" Mode="" Description="Choose: public (HTTPS with Let's Encrypt) or private (HTTP on internal network)" Type="Variable" Display="always" Required="true" Mask="false" />
-  <Config Name="Domain (Public)" Target="DOMAIN" Default="" Mode="" Description="Your domain for public mode (e.g., yahlp.yourdomain.com)" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Email (Public)" Target="EMAIL" Default="" Mode="" Description="Email for Let's Encrypt notifications (public mode only)" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Internal IP (Private)" Target="IP" Default="" Mode="" Description="Server IP for private mode (e.g., 192.168.1.100)" Type="Variable" Display="always" Required="false" Mask="false" />
-  <Config Name="Timezone" Target="TZ" Default="" Mode="" Description="Container timezone (e.g., Australia/Sydney, UTC, US/Eastern)" Type="Variable" Display="advanced" Required="false" Mask="false" />
   <!-- DASHBOARD SETTINGS -->
   <Config Name="Dashboard Name" Target="DASHBOARD_NAME" Default="YAHLP" Mode="" Description="Displayed in browser title and dashboard" Type="Variable" Display="always" Required="false" Mask="false" />
   <Config Name="Dashboard Layout" Target="DASHBOARD_STYLE" Default="modern" Mode="" Description="Choose: classic, modern, sleek, minimal" Type="Variable" Display="always" Required="false" Mask="false" />
@@ -95,4 +98,6 @@ Perfect for private lab environments without public exposure.</Overview>
   <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID for file permissions (100 = users)" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
   <!-- STORAGE PATHS -->
   <Config Name="Configuration" Target="/etc/yahlp" Default="/mnt/user/appdata/yahlp" Mode="rw" Description="Configuration folder - store the yahlp and sites JSON5 files here - ENV Variables override config settings, remove the variable settings from the form.  Custom templates in the templates folder" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/yahlp</Config>
+  <Config Name="Timezone" Target="/etc/localtime" Default="/etc/localtime" Mode="ro" Description="Read Timezone from host" Type="Path" Display="advanced" Required="false" Mask="false">/etc/localtime</Config>
+
 </Container>

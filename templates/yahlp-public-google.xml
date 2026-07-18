@@ -5,14 +5,18 @@
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
-  <Shell>sh</Shell>
+  <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <Support>https://github.com/auskento/YAHLP</Support>
   <Project>https://github.com/auskento/YAHLP</Project>
   <Category>Network:Web</Category>
   <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp-public-google.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/auskento/YAHLP/main/html/icons/yahlp.png</Icon>
-  <WebUI>https://[IP]:[PORT:443]/</WebUI>
+  <WebUI>https://yourdomain.com</WebUI>
+  <Screenshot>https://raw.githubusercontent.com/auskento/yahlp/main/screenshots/classic.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/auskento/yahlp/main/screenshots/sleek.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/auskento/yahlp/main/screenshots/neon.png</Screenshot>
+
   <Description>YAHLP - Public Mode with Google OAuth. HTTPS via Let's Encrypt + Google login authentication for internet-facing deployments.</Description>
   <Overview>YAHLP - Yet Another HomeLab Portal - Public Mode with Google OAuth
 
@@ -29,6 +33,9 @@ Setup Requirements:
 3. Add DNS A record pointing your domain to your server IP
 4. Ensure ports 80 and 443 are port-forwarded from router
 5. Set TEST_MODE=false once ready for production to avoid Let's Encrypt rate limiting</Overview>
+  <Requires>This app runs best on a dedicated IP on your LAN - not forwarding other ports to host.
+Your own domain name with DNS control for Lets Encrypt certificate generation
+Settings here are saved to yahlp.json5 on first run and are then overrides - if they exist, they take precedence over the config file</Requires>
 
 
   <!-- PORTS -->

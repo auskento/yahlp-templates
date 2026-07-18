@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Maintainer>
+<CommunityApplications>
   <Profile>
 # YAHLP - Yet Another HomeLab Portal Templates
 
@@ -52,4 +52,4 @@ These templates are part of the YAHLP project. See the LICENSE file for details.
   <Icon>https://raw.githubusercontent.com/auskento/yahlp/main/yahlp-150.png</Icon>
   <WebPage>https://github.com/auskento/yahlp-templates</WebPage>
   <Forum>https://forums.unraid.net/</Forum>
-</Maintainer>
+</CommunityApplications>

@@ -27,7 +27,7 @@ For simpler deployments, use specialized templates:
 - yahlp-public-entra.xml (Public mode, HTTPS, Entra ID OAuth)
 
 Documentation: https://github.com/auskento/YAHLP/docs</Overview>
-  <Category>Network:Web</Category>
+  <Category>Productivity: Security: Tools:Utilities Network:Proxy</Category>
   <WebUI>https://[IP]:[PORT:443]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/auskento/YAHLP/main/html/icons/yahlp.png</Icon>

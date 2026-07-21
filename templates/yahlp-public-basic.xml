@@ -9,7 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/auskento/YAHLP</Support>
   <Project>https://github.com/auskento/YAHLP</Project>
-  <Category>Network:Web</Category>
+  <Category>Productivity: Security: Tools:Utilities Network:Proxy</Category>
   <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp-public-basic.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/auskento/YAHLP/main/html/icons/yahlp.png</Icon>
   <WebUI>https://yourdomain.com</WebUI>

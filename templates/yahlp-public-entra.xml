@@ -25,7 +25,7 @@ Setup Requirements:
 4. Add DNS A record pointing your domain to your server IP
 5. Ensure ports 80 and 443 are port-forwarded from router
 6. Set TEST_MODE=false once ready for production to avoid Let&apos;s Encrypt rate limiting</Overview>
-  <Category>Network:Web</Category>
+  <Category>Productivity: Security: Tools:Utilities Network:Proxy</Category>
   <WebUI>https://yourdomain.com</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/auskento/yahlp-templates/main/templates/yahlp-public-entra.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/auskento/YAHLP/main/html/icons/yahlp.png</Icon>
